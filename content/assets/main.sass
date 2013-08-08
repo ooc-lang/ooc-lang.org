@@ -1,10 +1,31 @@
+// Color scheme
+
+$header-background: #50584D
+$nav-background: #222
+
+$intro-background: #BBCEB6
+$body-background: #F3F8F2
+$footer-background: #504F48
+
+$side-title-background: #DBEAD7
+$side-content-background: #FFF
+
+$title-color: #5A745D
+
+$header-link-color: #D3CFB9
+$link-color: #5A95F0
+$link-background: #FFFEF9
+
+// Actual style rules
+
 *
   margin: 0
   padding: 0
   font-family: Lato, sans-serif
+  box-sizing: border-box
 
 body
-  background: #f1f1ea
+  background: $body-background
   
   .header, .article, .intro, .footer
     width: 100%
@@ -16,27 +37,23 @@ body
     margin-left: auto
     margin-right: auto
 
-$title-color: #D15934
-
 a
-  background-color: #FFFEF9
+  background-color: $link-background
   padding: 3px
   border-radius: 6px
   text-decoration: none
 
-  $linkColor: #2F7FF7
   &:link, &:visited
-    color: $linkColor
+    color: $link-color
   &:hover
-    color: lighten($linkColor, 10)
+    color: lighten($link-color, 10)
 
 header
-  background: #42413E
+  background: $header-background
 
   .header-content
-    background: #222
-    font-size: 16px
-
+    background: $nav-background
+    
     ol
       list-style-type: none
 
@@ -44,27 +61,36 @@ header
         display: inline-block
         border-right: 1px solid #575050
 
+        padding-left: 11px
+        padding-right: 15px
+        padding-top: 9px
+        padding-bottom: 11px
+        font-size: 15px
+
+        &.home
+          padding: 3px 10px
+          padding-top: 8px
+
+          img
+            vertical-align: middle
+            display: inline-block
+            margin-top: -2px
+
         a
+          padding: 0
           display: block
           background-color: transparent
-          margin-left: 11px
-          margin-right: 15px
 
-          $header-vmargin: 9px
-          margin-top: $header-vmargin
-          margin-bottom: $header-vmargin
-
-          $header-link: #D3CFB9
-          color: $header-link
+          color: $header-link-color
 
           &:hover
-            color: lighten($header-link, 15)
+            color: lighten($header-link-color, 15)
 
 .intro
-  background-color: #D4CABC
+  background-color: $intro-background
 
   .intro-content
-    $intro-padding: 34px
+    $intro-padding: 36px
     padding-top: $intro-padding
     padding-bottom: $intro-padding
 
@@ -75,6 +101,37 @@ header
 
 .article
   article
+    nav.side
+      width: 31.91489%
+      float: right
+      margin-right: 0
+      display: inline
+      position: relative
+      top: -60px
+
+      .side-title
+        box-sizing: border-box
+        background: $side-title-background
+        height: 60px
+        vertical-align: middle
+        padding-left: 20px
+        padding-top: 17px
+
+        h2
+          font-weight: normal
+          font-size: 20px
+          color: $title-color
+
+      .side-content
+        background: $side-content-background
+        padding: 20px
+
+        ol
+          li
+            color: lighten(black, 20)
+            margin-left: 20px
+            line-height: 22px
+
     .article-content
       width: 65.95745%
       padding-top: 40px
@@ -95,7 +152,7 @@ header
         border-bottom: dotted 1px black
       p
         margin: 20px 0
-        font-size: 16px
+        font-size: 15px
         line-height: 22px
       ul, ol
         margin: 20px
@@ -116,12 +173,11 @@ header
         kbd
           font-weight: bold
 
-
 footer
   padding: 40px 0 80px 0
   margin: 60px 0 -40px 0
   
-  background-color: #504F48
+  background-color: $footer-background
   color: #E2E0D5
 
   .footer-content

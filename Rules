@@ -46,10 +46,11 @@ compile '*' do
   if item.binary?
     # don’t filter binary items
   else
-    filter :mustache
     filter :kramdown
+    filter :mustache
     filter :colorize_syntax, :default_colorizer => :pygmentsrb
     layout 'default'
+    filter :add_toc
   end
 end
 

@@ -1,5 +1,6 @@
 ---
 title: About ooc
+has_toc: true
 ---
 
 ## What is ooc?

@@ -15,4 +15,5 @@
     <%= render 'header' %>
     <div class="article">
       <article>
+        <%= render 'toc' if @item[:has_toc] %>
         <div class="article-content">
