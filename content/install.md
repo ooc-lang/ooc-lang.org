@@ -1,5 +1,6 @@
 ---
 title: Installing ooc
+has_toc: true
 ---
 
 ## Instructions For The Impatient

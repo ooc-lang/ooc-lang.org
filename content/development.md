@@ -1,5 +1,6 @@
 ---
 title: Development
+has_toc: true
 ---
 
 ## Reporting bugs

@@ -16,4 +16,5 @@
     <div class="article">
       <article>
         <%= render 'toc' if @item[:has_toc] %>
+        <%= render 'doc_index' if @item[:doc_index] %>
         <div class="article-content">
