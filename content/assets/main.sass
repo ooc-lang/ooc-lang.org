@@ -323,12 +323,12 @@ header
         font-size: 15px
         line-height: 22px
 
-        code
-          font-weight: bold
-          background: #3F522C
-          padding: 2px 4px
-          border-radius: 4px
-          color: #DDE4CE
+      p code, dd code
+        font-weight: bold
+        background: #3F522C
+        padding: 2px 4px
+        border-radius: 4px
+        color: #DDE4CE
       ul, ol
         margin: 20px 30px
       li
@@ -379,8 +379,15 @@ footer
       max-width: 710px
       padding-left: 55px
       background: url(images/logo-nav.png) top left no-repeat
-      background-position-y: 15px
+      background-position-y: 40px
 
       margin-top: 20px
       padding-top: 20px
       border-top: 1px solid #797873
+
+.glossary
+  dt
+    color: $title-color
+    margin-bottom: 4px
+  dd
+    margin: 0 0 20px 20px

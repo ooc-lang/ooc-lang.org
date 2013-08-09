@@ -10,6 +10,13 @@ class AddTOCFilter < Nanoc::Filter
     content.gsub('{{TOC}}') do
       toc_items = @item[:custom_toc]
 
+      if @item[:glossary]
+        toc_items = @item[:glossary].sort.map do |symbol, text|
+          term = symbol.to_s
+          [term.capitalize, "#glossary-#{term}"]
+        end
+      end
+
       unless toc_items
         # Find all top-level sections
         doc = Nokogiri::HTML(content)

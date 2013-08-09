@@ -31,6 +31,10 @@ compile '*' do
         filter :erb
     end
 
+    if item[:glossary]
+      filter :add_glossary
+    end
+
     filter :mustache
     filter :colorize_syntax, :default_colorizer => :pygmentsrb
     layout item[:layout] || 'default'
