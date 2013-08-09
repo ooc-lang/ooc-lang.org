@@ -12,15 +12,14 @@ layout: front
 <div class="hero">
   <div class="hero-content">
     <pre>
-<code class="language-ooc">Greeter: class {
-  what: String
+<code class="language-ooc">parse: func {
+    PropReader new(path, props)
 
-  init: func (=what)
-  greet: func {
-    "Hello %s!" printfln(what)
-  }
-
-  Greeter new("World") greet()
+    // parse deps
+    requires := props get("Requires")
+    if (requires) {
+        deps addAll(requires split(',', false) map (|dep| dep trim(" \t")))
+    }
 }</code>
     </pre>
   </div>
@@ -28,8 +27,10 @@ layout: front
 
 <div class="ticker">
   <div class="ticker-content">
-    The current release is 0.9.6, released on February 20th, 2013.
-    Check out the <a href="/release-notes">release notes</a> for details.
+    The current release is <%= latest_release_info[:version] %>, released on <%= latest_release_info[:date].format_as_date %>. Check out the <a href="/release-notes/">release notes</a> for details.
+
+    <!-- The current release is 0.9.6, released on February 20th, 2013.
+    Check out the <a href="/release-notes">release notes</a> for details. -->
   </div>
 </div>
 
