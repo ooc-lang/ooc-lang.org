@@ -1,6 +1,13 @@
 ---
 title: Documentation
-doc_index: true
+has_toc: true
+custom_toc:
+  - ["Tutorial", "/docs/tutorial/"]
+  - ["Language", "/docs/language/"]
+  - ["SDK", "/docs/sdk/"]
+  - ["Tools", "/docs/tools/"]
+  - ["Implementation", "/docs/implementation/"]
+  - ["Troubleshooting", "/docs/troubleshooting/"]
 ---
 
 ## How to use the documentation
