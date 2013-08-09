@@ -1,5 +1,7 @@
 // Color scheme
 
+$title-color: #5A745D
+
 $header-background: #50584D
 $nav-background: #222
 
@@ -10,11 +12,14 @@ $footer-background: #504F48
 $side-title-background: #DBEAD7
 $side-content-background: #FFF
 
-$title-color: #5A745D
+$explanation-background: lighten(saturate($title-color, 25), 5)
 
 $header-link-color: #D3CFB9
 $link-color: #5A95F0
 $link-background: #FFFEF9
+$footer-link-background: #3F3F3E
+
+$mono-family: Consolas,Inconsolata,Monaco,monospace
 
 // Actual style rules
 
@@ -27,10 +32,10 @@ $link-background: #FFFEF9
 body
   background: $body-background
   
-  .header, .article, .intro, .footer
+  .header, .article, .intro, .footer, .explanation, .ticker, .hero
     width: 100%
 
-  .header-content, article, .intro-content, .footer-content
+  .header-content, article, .intro-content, .footer-content, .explanation-content, .ticker-content, .hero-content, .chooser, .support
     max-width: 940px
     padding-left: 0
     padding-right: 0
@@ -47,6 +52,18 @@ a
     color: $link-color
   &:hover
     color: lighten($link-color, 10)
+
+pre
+  border: 1px solid #C5C0A4
+  background-color: #F8F8F8
+  padding: 8px
+
+  code, kbd, span
+    font-family: $mono-family
+    font-size: 13px
+
+  kbd
+    font-weight: bold
 
 header
   background: $header-background
@@ -95,9 +112,128 @@ header
     padding-bottom: $intro-padding
 
     h1
-      font-weight: 300
+      font-weight: 400
       color: $title-color
       font-size: 38px
+
+.hero
+  background-color: $side-title-background
+  padding-top: 20px
+  padding-bottom: 10px
+
+
+  .hero-content
+    padding: 0
+    max-width: 700px
+
+    pre
+      border: none
+      background: none
+
+      code, kbd, span
+        font-size: 19px
+        line-height: 1.3em
+
+.ticker
+  background-color: $footer-background
+
+  .ticker-content
+    display: block
+    padding: 8px
+    $ticker-link-color: darken(white, 25)
+    color: $ticker-link-color
+
+    a
+      color: lighten($ticker-link-color, 10)
+      background-color: $footer-link-background
+
+.explanation
+  background-color: $explanation-background
+
+  .explanation-content
+    $intro-padding: 36px
+    padding-top: $intro-padding
+    padding-bottom: $intro-padding
+
+    p
+      font-weight: 400
+      color: lighten($intro-background, 20)
+      font-size: 38px
+      text-align: center
+
+.chooser
+  padding-top: 40px
+  padding-bottom: 40px
+
+  .chooser-unit
+    width: 31% 
+    float: left
+    margin-right: 2.12766%
+    display: inline
+    text-align: center
+    margin-bottom: 30px
+
+    kbd
+      font-family: $mono-family
+      font-size: 90%
+      font-weight: bold
+
+    h2
+      a
+        display: inline-block
+        margin: 20px 0
+        font-weight: 400
+        font-size: 24px
+
+    &:before
+      content: ""
+      display: block
+      width: 100px
+      height: 100px
+      margin: 0 auto
+      border: 12px double white
+      background-position: center center
+      background-repeat: no-repeat
+      border-radius: 50%
+      background-color: $explanation-background
+
+    &.install-rock:before
+      background-image: url(images/chooser-download.png)
+
+    &.take-the-tutorial:before
+      background-image: url(images/chooser-tutorial.png)
+
+    &.learn-more:before
+      background-image: url(images/chooser-docs.png)
+
+
+
+.support
+  border-top: 1px solid $explanation-background
+  clear: both
+  padding-top: 20px
+
+  .support-content
+    h2
+      font-weight: 300
+      font-size: 21px
+      color: $title-color
+      padding-bottom: 10px
+
+    p
+      padding-right: 100px
+
+  &:before
+    content: ""
+    display: block
+    width: 130px
+    height: 110px
+    padding: 0 60px 0 40px
+    position: relative
+    background-position: 100px 15px
+    background-repeat: no-repeat
+    background-image: url(images/heart.png)
+    float: left
 
 .article
   article
@@ -160,17 +296,6 @@ header
         line-height: 20px
       ul li
         list-style-type: square
-      pre
-        border: 1px solid #C5C0A4
-        background-color: #F8F8F8
-        padding: 8px
-
-        code, kbd, span
-          font-family: Consolas,Inconsolata,Monaco,monospace
-          font-size: 13px
-
-        kbd
-          font-weight: bold
 
 footer
   padding: 40px 0 80px 0
@@ -186,6 +311,6 @@ footer
       line-height: 22px
 
       a
-        background-color: #3F3F3E
+        background-color: $footer-link-background
         color: inherit
         padding: 2px 4px

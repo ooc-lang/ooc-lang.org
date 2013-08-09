@@ -1,5 +1,14 @@
 <%= render 'prologue' %>
-
-  <%= yield %>
-
+<%= render 'header' %>
+<%= render 'intro' %>
+<div class="article">
+  <article>
+    <%= render 'toc' if @item[:has_toc] %>
+    <%= render 'doc_index' if @item[:doc_index] %>
+    <div class="article-content">
+      <%= yield %>
+    </div>
+  </article>
+</div>
+<%= render 'footer' %>
 <%= render 'epilogue' %>
