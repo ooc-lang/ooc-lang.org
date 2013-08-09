@@ -44,7 +44,7 @@ and the project was never actually abandoned. After a long while with just
 a single page website, I decided to rebuild a proper one to help newcomers
 get up and running quickly. You are reading it right now!
 
-## Motivation
+## Why use ooc?
 
 It's a hard choice to make nowadays, to spend a chunk of your time learning
 and writing a codebase in a language that isn't "mainstream". Some would
