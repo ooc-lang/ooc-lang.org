@@ -1,7 +1,12 @@
 ---
 title: Tools
 has_toc: true
+custom_toc:
+  - ["rock", "/docs/tools/rock/"]
+  - ["sam", "/docs/tools/sam/"]
 ---
+
+## Frequently used ooc tools
 
 There are some tools you should know about when you start looking into ooc.
 

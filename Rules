@@ -54,7 +54,10 @@ compile '*' do
     filter :mustache
     filter :colorize_syntax, :default_colorizer => :pygmentsrb
     layout item[:layout] || 'default'
-    filter :add_toc
+
+    if item[:has_toc]
+      filter :add_toc
+    end
   end
 end
 

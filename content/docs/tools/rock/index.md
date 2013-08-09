@@ -3,6 +3,8 @@ title: rock
 has_toc: true
 ---
 
+## About rock
+
 rock takes your ooc sources, tinkers around and, if you're lucky, gives you an executable.
 
 ## Basic usage
