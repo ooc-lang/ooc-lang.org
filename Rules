@@ -13,33 +13,11 @@
 #   item, use the pattern "/about/*/"; "/about/*" will also select the parent,
 #   because "*" matches zero or more characters.
 
-require 'set'
-
-preprocess do
-  # create tags pages
-  tags = Set.new
-  items.each do |item|
-    next if item[:tags].nil?
-    item[:tags].each { |t| tags.add(t) }
-  end
-
-  tags.each do |tag|
-  items << Nanoc::Item.new(
-      "",
-      { :tag => tag },
-      "/tags/#{tag}/")
-  end
-end
-
 compile '/assets/*' do
   case item[:extension]
     when 'sass'
       filter :sass
   end
-end
-
-compile '/tags/*' do
-  layout 'tags'
 end
 
 compile '*' do
