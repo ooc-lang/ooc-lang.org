@@ -17,6 +17,9 @@ tell rock to keep the sources for you:
     #!bash
     rock --noclean ...
 
+Afterwards, you'll find the C source files in corresponding subdirectories of `rock_tmp`. The header
+files reside in `.libs`.
+
 ## More information
 
 Also useful in these cases: Let rock tell its story of compilation. That means: print everything about
