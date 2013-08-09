@@ -1,18 +1,19 @@
 ---
 title: Release notes
 has_toc: true
+github: true
 ---
 
 ## 0.9.6 (2013-02-20)
 
   - Cover templates are in! Planning for cleaner arrays in 0.9.7 - in the meantime,
-    fun example here: https://gist.github.com/nddrylliog/4967552 (@nddrylliog)
+    fun example here: <https://gist.github.com/nddrylliog/4967552> (@nddrylliog)
   - Version blocks in .use files - not entirely friendly to the make driver yet,
     but SequenceDriver and AndroidDriver handle those beautifully. (@nddrylliog)
-    Full documentation about use files here: http://docs.ooc-lang.org/
+    Full documentation about use files here: <http://docs.ooc-lang.org/>
   - operator@ variant (same as func@ but for operator overloads) - @nddrylliog
   - Operator overloads declaration within types, which fix some import issues.
-    See #583 for details: https://github.com/nddrylliog/rock/issues/583 (@nddrylliog)
+    See #583 for details. (@nddrylliog)
   - Stricter warnings for field redefinition in classes (@shamanas)
   - Nested closures are more reliable (@shamanas)
   - Instead of going through an intermediate archive, rock now computes the
@@ -31,12 +32,11 @@ has_toc: true
   - Processes launched in Unix systems now check for segfault (@shamanas)
   - nagaqueen (and thus rock) are now able to parse .ooc files from memory, not
     only from files. This allows nice things such as
-    https://github.com/nddrylliog/scissors (@nddrylliog)
+    <https://github.com/nddrylliog/scissors> (@nddrylliog)
   - Add '#pragma once' in generated headers, this makes compilation faster for
     some (gcc/clang), and header guards are still here as a fallback for old
     compilers (@shamanas)
-  - 'CustomPkg' support in .use files, see
-    https://github.com/nddrylliog/rock/issues/492 - used in scissors for
+  - 'CustomPkg' support in .use files, see #492 - used in scissors for
     llvm-config, but also in ooc-sdl2 for sdl2-config, for example
     (@nddrylliog)
   - 'Linker' support in .use files, great when using ooc-llvm because it
@@ -91,10 +91,10 @@ has_toc: true
     handled correctly (@nddrylliog)
   - 'Additionals' support in .use files - to use .c code bases directly in your
     .ooc bindings, example: nagaqueen-generated grammar in rock.use, and
-    stb_image.c in https://github.com/nddrylliog/ooc-stbi
+    stb_image.c in <https://github.com/nddrylliog/ooc-stbi>
   - Add 'seek' to the Reader interface - it's actually handy to subclass this
     for alternative I/O, see this example with SDL_rwops:
-        https://github.com/nddrylliog/dye/blob/gles/source/dye/gritty/io.ooc
+        <https://github.com/nddrylliog/dye/blob/gles/source/dye/gritty/io.ooc>
         (@nddrylliog)
   - Android driver added, generate files in your jni/ directory (specify with
     -outpath), and generate Android.mk files to be used with ndk-build.
@@ -152,7 +152,7 @@ has_toc: true
   - New command-line options: libfolder, staticlib, dynamiclib
   - yajit removal, it wasn't being used anywhere in rock
   - New Time methods
-  - Somehow the SDK now includes an HTTPRequest and RestClient?
+  - Somehow the SDK now includes an <HTTPRequest> and RestClient?
     Courtesy of @pheuter aka Mark Fayngersh
   - Added loop(|| ...)
   - Variants of each(...) with index
@@ -176,9 +176,9 @@ has_toc: true
   - 2010-05 oos now compiles under rock - we still have to figure out
     a good syntax for stack-allocation of C arrays.
   - 2010-04 Added support for ooc arrays, early implementation of this
-    proposal: https://lists.launchpad.net/ooc-dev/msg00146.html
+    proposal: <https://lists.launchpad.net/ooc-dev/msg00146.html>
 
-## 0.9.0 (2010-04-23 - 600+ downloads)
+## 0.9.0 (2010-04-23)
 
   - 2010-04 : rock bootstraps under Gentoo, Ubuntu, Win32, OSX,
     the first release of the 0.9.x branch is out!

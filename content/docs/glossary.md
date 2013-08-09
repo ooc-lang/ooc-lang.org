@@ -63,6 +63,8 @@ glossary:
     form, such as an executable. Example: [rock].
   rock: >
     The main ooc [compiler].
+  sourcepath: >
+    List of directories in which [rock] looks for ooc [module]s.
 ---
 
 {{GLOSSARY}}

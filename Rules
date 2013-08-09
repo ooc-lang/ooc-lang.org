@@ -31,6 +31,11 @@ compile '*' do
         filter :erb
     end
 
+    if item[:github]
+      filter :link_github_issues
+      filter :link_github_nicks
+    end
+
     if item[:glossary]
       filter :add_glossary
     end
