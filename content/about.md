@@ -41,7 +41,7 @@ faded.
 A small team kept maintaining the compiler and SDK in the background. Bugs were
 fixed, long-awaited features were implemented. Development has quietly continued,
 and the project was never actually abandoned. After a long while with just
-a single page website, I decided to rebuild a proper one to help newcomers
+a single page website, we decided to rebuild a proper one to help newcomers
 get up and running quickly. You are reading it right now!
 
 ## Why use ooc?

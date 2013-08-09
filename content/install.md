@@ -53,6 +53,9 @@ Then, add it to your `$PATH`. One way to do that is to edit your
     #!bash
     export PATH="$PATH:/path/to/rock/bin"
 
+And then close and re-open your terminal - or simply `source ~/.bashrc`
+or similar.
+
 ## Post-install instructions
 
 The first thing you want to do is test that rock has been installed
@@ -63,7 +66,37 @@ correctly. Running `rock -v` should greet you with something like:
 Then, you want to choose a directory where you will put all your ooc-related
 stuff. For this page, we will assume you are using `$HOME/Dev`.
 
-## About rock
+Edit your `~/.bashrc` or `~/.zshrc` file to add the line:
 
-The main implementation of ooc is rock - it's written in ooc itself,
-and it is the most up-to-date version.
+    #!bash
+    export OOC_LIBS="$HOME/Dev"
+
+And then close and re-open your terminal - or simply `source ~/.bashrc`
+or similar.
+
+## Installing sam
+
+[sam][sam] is a very useful command-line tool that will allow you to:
+
+  * clone any ooc project in its grimoir
+  * make sure the dependencies are present and up-to-date
+  * tell you if you forgot to push any of your repos
+  * run a test suite and generate a report
+
+It is simply a must-have. Don't wait up and do the following:
+
+    #!bash
+    git clone https://github.com/nddrylliog/sam.git $OOC_LIBS/sam
+    cd $OOC_LIBS/sam
+    rock -v
+
+If compilation went fine, you should be able to execute `./sam`. Then,
+you need to add it to your `$PATH`, just like rock, by adding this line
+to your `~/.bashrc` or `~/.zshrc`:
+
+    export PATH="$PATH:$OOC_LIBS/sam"
+
+Running `sam` should now print its version, along with a little help text.
+Feel free to [read more][sam] about the many wonders of sam.
+
+[sam]: /docs/tools/sam/
