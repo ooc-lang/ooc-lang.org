@@ -72,3 +72,67 @@ have inspired many developers to try and do their own thing. ooc survived
 through sheer, continued usefulness.
 
 I sincerely hope you find it useful, quirky, and enlightening as well.
+
+## Similar projects
+
+There are several new-ish, general-purpose programming languages floating
+around. Some of them are similar to ooc, and some of them are very different.
+If ooc doesn't fulfill your needs, perhaps some of these do:
+
+<table class="comparison">
+<tr class="header">
+  <th>Name</th>
+  <th>Target</th>
+  <th>Notes</th>
+</tr>
+<tr>
+  <td><a href="https://wiki.gnome.org/Vala">Vala</a></td>
+  <td>C / GLib</td>
+  <td>Gnome backed</td>
+</tr>
+<tr>
+  <td><a href="https://wiki.gnome.org/Genie">Genie</a></td>
+  <td>C / GLib</td>
+  <td>Vala with a python syntax</td>
+</tr>
+<tr>
+  <td><a href="http://haxe.org/">Haxe</a></td>
+  <td>Multi-backend</td>
+  <td>Game oriented</td>
+</tr>
+<tr>
+  <td><a href="http://www.rust-lang.org/">Rust</a></td>
+  <td>Native</td>
+  <td>Mozilla backed</td>
+</tr>
+<tr>
+  <td><a href="http://golang.org/">Go</a></td>
+  <td>Native</td>
+  <td>Google backed</td>
+</tr>
+<tr>
+  <td><a href="http://coffeescript.org/">CoffeeScript</a></td>
+  <td>JavaScript</td>
+  <td>The ooc of JavaScript</td>
+</tr>
+<tr>
+  <td><a href="http://iolanguage.org/">Io</a></td>
+  <td>VM</td>
+  <td>Minimal</td>
+</tr>
+<tr>
+  <td><a href="http://www.lua.org/">Lua</a></td>
+  <td>VM</td>
+  <td>Embedded in many games</td>
+</tr>
+<tr>
+  <td><a href="http://www.bitc-lang.org/">BitC</a></td>
+  <td>Native</td>
+  <td>Gave up LISP</td>
+</tr>
+<tr>
+  <td><a href="http://claylabs.com/clay/">Clay</a></td>
+  <td>Native</td>
+  <td>Abandoned?</td>
+</tr>
+</table>

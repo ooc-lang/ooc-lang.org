@@ -17,7 +17,7 @@ $explanation-background: lighten(saturate($title-color, 25), 5)
 $header-link-color: #D3CFB9
 $link-color: #5A95F0
 $link-background: #FFFEF9
-$footer-link-background: #3F3F3E
+$footer-link-background: #616161
 
 $mono-family: Consolas,Inconsolata,Monaco,monospace
 
@@ -28,6 +28,25 @@ $mono-family: Consolas,Inconsolata,Monaco,monospace
   padding: 0
   font-family: Lato, sans-serif
   box-sizing: border-box
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+
+caption, th, td
+  text-align: left
+  font-weight: 400
+  vertical-align: middle
+
+table.comparison
+  th, td
+    padding: 5px 20px 5px 5px
+
+  th
+    font-weight: 300
+
+  tr:nth-child(even)
+    background: #E4E4DF
 
 body
   background: $body-background
@@ -44,7 +63,7 @@ body
 
 a
   background-color: $link-background
-  padding: 3px
+  padding: 1px 3px
   border-radius: 6px
   text-decoration: none
 
@@ -330,16 +349,38 @@ footer
   color: #E2E0D5
 
   .footer-content
+    font-size: 13px
+    line-height: 22px
+
+    a
+      background-color: $footer-link-background
+      color: inherit
+      padding: 2px 2px
+
+    nav
+      section
+        padding-bottom: 40px
+        width: 22%
+        float: left
+        margin-right: 2.12766%
+        display: inline
+
+        h3
+          font-size: 16px
+          font-weight: 300
+          margin-bottom: 20px
+
+        ol, ul
+          list-style-type: none
+
     .fine-print
+      clear: both
+      display: block
       max-width: 710px
       padding-left: 55px
       background: url(images/logo-nav.png) top left no-repeat
       background-position-y: 15px
 
-      font-size: 14px
-      line-height: 22px
-
-      a
-        background-color: $footer-link-background
-        color: inherit
-        padding: 2px 4px
+      margin-top: 20px
+      padding-top: 20px
+      border-top: 1px solid #797873

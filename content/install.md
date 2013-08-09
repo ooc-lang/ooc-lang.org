@@ -38,7 +38,7 @@ Or, if you prefer, you can proceed to a [manual installation](#manual-installati
 [mingw]: http://mingw.org/
 [wb]: https://github.com/nddrylliog/winbrew
 
-## Manual installation
+## Installing from Git
 
 To install rock, simply clone the git repo and run make rescue:
 
