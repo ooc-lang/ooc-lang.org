@@ -2,3 +2,4 @@ output
 tmp
 .sass-cache
 *.log
+*.pstore
