@@ -4,6 +4,10 @@
   </div>
 
   <div class="side-content">
+    <% unless @item.parent.identifier == '/' %>
+      <p>↑ <%= link_to "Back to #{@item.parent[:short_title] || @item.parent[:title]}", @item.parent %></p>
+    <% end %>
+
     {{TOC}}
   </div>
 </nav>
