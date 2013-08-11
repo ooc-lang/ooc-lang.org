@@ -33,7 +33,7 @@ to write a [usefile][use] for it, and put them both together in a directory.
 
 [use]: /docs/tools/rock/usefiles
 
-    #!text
+    #!yaml
     Name: Watch Corgi
     Description: Tells on the bad websites that go down
     Version: 0.1.0
@@ -207,8 +207,8 @@ scratch using those new modules:
     checker := Checker new("http://example.org/")
     
     while (true) {
-      Time sleepSec(5)
       notifier notify(checker check(), checker url)
+      Time sleepSec(5)
     }
 
 There. All good. Not only was her program now constantly vigilant, checking
@@ -272,7 +272,214 @@ after all.
 
 ## All Together Now
 
+"So, that was nice. For the life of me, I can't think of a single thing my program
+is missing." Her eyes closed gently, and she leaned back, as if overwhelmed by bliss.
 
+Wait. Her eyes, suddenly inquisitive, were perfectly open now. "What if I want
+to monitor several websites? Then I would need a config file so that I could modify
+the list of websites to monitor... and it would need to check them in parallel, so
+it doesn't get stuck on any one of them."
 
+She decided she needed one more module: `source/watchcorgi/config.ooc`:
 
+    #!ooc
+    import io/File
+    import structs/ArrayList
+    import text/StringTokenizer
+
+    Config: class {
+      websites := ArrayList<String> new()
+
+      init: func (path := "~/.config/corgirc") {
+        content := File read(path)
+        content split('\n') each(|line|
+          websites add(line trim("\t "))
+        )
+      }
+    }
+
+Armed with that new weapon, checking multiple websites in parallel was just a
+matter of making threads behave. Since she didn't have much experience in the
+domain, and the documentation seemed a little bit obscure, she decided to ask
+for help in the [ooc discussion group][group]
+
+[group]: https://groups.google.com/group/ooc-lang
+
+Almost immediately, a response sprung with numerous code examples she could use
+as inspiration for her own endeavor. And so she embarked courageously,
+rewriting `source/watchcorgi.ooc` once again:
+
+    #!ooc
+    import watchcorgi/[config, checker, notifier]
+    import os/[Time, Thread]
+    import structs/[ArrayList]
+    
+    threads := ArrayList<Thread> new()
+
+    for (url in config websites) {
+      threads add(Thread new(||
+        guard := Guard new(5, url)
+        guard run()
+      ))
+    }
+
+    // start all the threads
+    for (thread in threads) {
+      thread start()
+    }
+
+    // wait for all threads to complete
+    threads each(|thread| thread join())
+
+    Guard: class {
+        delay: Int
+        checker: Checker
+        notifier: Notifier
+
+        init: func (url: String, =delay) {
+          checker = Checker new(url)
+          notifier = Notifier new()
+          notifier quiet = true
+        }
+        
+        run: func {
+          while (true) {
+            notifier notify(checker check(), checker url)
+            Time sleepSec(delay)
+          }
+        }
+    }
+
+As she began to write down a list of websites to check in `~/.config/corgirc`,
+she started to list the new things she had learned during that last refactoring:
+
+  * That classes can be used before they are defined - in order word, the order
+    in which classes are defined does not matter! 
+
+  * That threads, while really old fashioned, were quite easy to use - all you
+    had to do was create a new `Thread` object and pass a function that takes
+    zero arguments.
+
+  * That some functions are anonymous - and that they can be defined as an
+    argument to a function call like this: `[1, 2, 3] reduce(|a, b| a + b)`
+
+  * That using a foreach, such as `for (element in iterable) { /* code */ }` or
+    using the each method, like so `iterable each(|element| /* code */ )`, where
+    pretty much equivalent.
+
+## When Features Creep
+
+As magnificent as the program was, she couldn't shake an eerie feeling. It
+seemed so perfect, so concise, so damn practical - what could possibly go
+wrong?
+
+"Oh, right!" she whispered. The program assumes that the `curl` command-line
+utility is installed and in the `$PATH`. While on most Linux distributions,
+that's a safe bet, it might not be there on OSX. Or, god forbid, on Windows.
+
+But it was almost 6AM, and rays of sunlight would soon come and disturb the
+oh so peaceful (yet eventful) night of coding. Obviously, she could not afford
+to write her own HTTP library.
+
+Sure, in theory, a simple usage of `net/TCPSocket` from the SDK, writing
+something like
+
+    HEAD / HTTP/1.0\r\n\r\n
+
+..and seeing if you get a non-empty response, would suffice. But what about
+parsing empty, yet worrying responses, like an HTTP 404, or an HTTP 502? What
+about HTTP 1.1 and the Host header, essential when several websites are running
+on the same IP address? And most importantly, what about HTTPS, which runs on a
+different port, and what's more, over SSL?
+
+No, definitely, writing an HTTP library was not part of the plan. But maybe
+there was something she could use... maybe curl existed also as a library. A
+quick search for `ooc curl` revealed the existence of
+[nddrylliog/ooc-curl][ooc-curl]. Jackpot!
+
+[ooc-curl]: https://github.com/nddrylliog/ooc-curl
+
+A quick clone and.. wait. She knew better. Why not use [sam][sam] instead?
+A simple `sam clone curl` would suffice. Or, better yet, she could add the
+dependency in the .use file, and run `sam get` from the watchcorgi folder
+afterwards.
+
+[sam]: /docs/tools/sam/
+
+Her .use file now looked a little bit like this:
+
+    #!yaml
+    Name: Watch Corgi
+    Description: Multi-threaded website monitoring system
+    Version: 0.2.0
+    
+    SourcePath: source
+    Main: watchcorgi
+    Requires: curl
+
+And sure enough, after `sam get`, she saw the `ooc-curl` folder appear in her
+`$OOC_LIBS` directory. It was time to rewrite `source/watchcorgi/checker.ooc`:
+
+    #!ooc
+    use curl
+    import curl/Highlevel
+
+    Checker: class {
+        url: String
+
+        init: func (=url)
+
+        /**
+         * @return true if the url is reachable, false otherwise
+         */
+        check: func -> Bool {
+          200 == (HTTPRequest new(url). perform(). getResponseCode())
+        }
+    }
+
+This piece of code was one of her favorites yet. She had used one of the
+features she had just learned about - call chaining. "In fact", she would
+later explain to a colleague, "you can think of the dot as a comma - it
+separates several method calls, but they all happen on the same object,
+sequentially".
+
+Recompiling the program after this change was exciting. There was no
+configuration dialog to fill out. No complicated command-line option to add
+when compiling. As a matter of fact, the single line added to the use file was
+enough to make sam happy - and rock itself seemed pretty content with the `use
+curl` directive now sitting at the top of the checker module.
+
+A simple `rock -v` did the trick. And there she had it. The perfect website
+monitoring system. At last. Oh, sure, part of her brain fully realized that
+the impression of perfectness would fade out over the days, but as far as
+discovering a new language goes, she thought this was a pretty good run.
+
+There was just one thing left to do...
+    
+## To Give Back
+
+At this point, she felt that watchcorgi it was worth it to publish her program
+somewhere. Of course, all along, she had been keeping track of it using
+[git][git]. In this case, she was using [GitHub][github] as a host.
+
+[git]: http://git-scm.org/
+[github]: https://github.com/
+
+She decided to make it easy for other people who might want to use
+`watchcorgi`, to get it. After a quick search, it quickly became evident that
+the process itself was trivial. She just had to send a pull request to the
+[sam repository][sam-repo] that added a formula for her new pet project.
+
+[sam-repo]: https://github.com/nddrylliog/sam
+
+So, after forking sam on GitHub, changing the origin of her sam repostiroy,
+she opened a new file in `$OOC_LIBS/sam/library/watchcorgi.yml`, and wrote:
+
+    #!yaml
+    Origin: https://github.com/example/watchcorgi.git
+
+And then, she [submitted the pull request][create-pullreq]. The sun was rising.
+It felt warm. I think - she thought - I just might like it here.
+
+[create-pullreq]: https://help.github.com/articles/creating-a-pull-request
 
