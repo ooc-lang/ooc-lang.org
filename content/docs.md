@@ -3,12 +3,12 @@ title: Documentation
 has_toc: true
 custom_toc:
   - ["Tutorial", "/docs/tutorial/"]
-  - ["Language", "/docs/language/"]
+  - ["Language", "/docs/lang/"]
   - ["SDK", "/docs/sdk/"]
   - ["Tools", "/docs/tools/"]
-  - ["Implementation", "/docs/implementation/"]
-  - ["Troubleshooting", "/docs/troubleshooting/"]
-  - ["Glossary", "/docs/glossary"]
+  - ["Implementation", "/docs/impl/"]
+  - ["Troubleshooting", "/docs/kaputt/"]
+  - ["Glossary", "/docs/glossary/"]
 ---
 
 ## How to use the documentation
@@ -19,7 +19,7 @@ The documentation for ooc is structured as follows:
   newcomers to the language. By building a small program, you will learn the
   basics of the syntax and even use bits of the SDK.
 
-  2. The [Language](/docs/language/) section explains in detail every feature
+  2. The [Language](/docs/lang/) section explains in detail every feature
   of the language: it goes through the syntax and a the main use cases for
   every feature. It also contains a full grammar, and a collection of best
   practices.
@@ -33,10 +33,10 @@ The documentation for ooc is structured as follows:
   along with a typical workflow from the creation, compilation, testing, and
   documentation of a project.
 
-  5. The [Implementation](/docs/implementation/) section explains how various
+  5. The [Implementation](/docs/impl/) section explains how various
   ooc features are implemented.
 
-  6. The [Troubleshooting](/docs/troubleshooting/) section gives advice on how
+  6. The [Troubleshooting](/docs/kaputt/) section gives advice on how
   to address frequently encountered problems.
 
   7. The [Glossary](/docs/glossary/) is a collection of terms you may stumble
