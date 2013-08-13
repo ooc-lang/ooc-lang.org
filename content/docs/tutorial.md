@@ -472,7 +472,7 @@ the process itself was trivial. She just had to send a pull request to the
 
 [sam-repo]: https://github.com/nddrylliog/sam
 
-So, after forking sam on GitHub, changing the origin of her sam repostiroy,
+So, after forking sam on GitHub, changing the origin of her sam repository,
 she opened a new file in `$OOC_LIBS/sam/library/watchcorgi.yml`, and wrote:
 
     #!yaml
