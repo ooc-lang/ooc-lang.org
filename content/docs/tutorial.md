@@ -284,17 +284,21 @@ She decided she needed one more module: `source/watchcorgi/config.ooc`:
 
     #!ooc
     import io/File
+    import os/Env
     import structs/ArrayList
     import text/StringTokenizer
+
+    DEFAULT_PATH := Env get("HOME") + "/.config/corgirc"
 
     Config: class {
       websites := ArrayList<String> new()
 
-      init: func (path := "~/.config/corgirc") {
-        content := File read(path)
-        content split('\n') each(|line|
-          websites add(line trim("\t "))
-        )
+      init: func (path := DEFAULT_PATH) {
+	content := File new(path) read()
+	content split('\n') each(|line|
+	  website := line trim("\t ")
+	  if(!website empty?()) websites add(website)
+	)
       }
     }
 
@@ -311,14 +315,16 @@ rewriting `source/watchcorgi.ooc` once again:
 
     #!ooc
     import watchcorgi/[config, checker, notifier]
-    import os/[Time, Thread]
+    import os/Time
+    import threading/Thread
     import structs/[ArrayList]
     
     threads := ArrayList<Thread> new()
+    config := Config new()
 
     for (url in config websites) {
       threads add(Thread new(||
-        guard := Guard new(5, url)
+        guard := Guard new(url, 5)
         guard run()
       ))
     }
@@ -329,7 +335,7 @@ rewriting `source/watchcorgi.ooc` once again:
     }
 
     // wait for all threads to complete
-    threads each(|thread| thread join())
+    threads each(|thread| thread wait())
 
     Guard: class {
         delay: Int
