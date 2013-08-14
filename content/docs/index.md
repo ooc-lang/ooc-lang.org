@@ -6,7 +6,6 @@ custom_toc:
   - ["Language", "/docs/lang/"]
   - ["SDK", "/docs/sdk/"]
   - ["Tools", "/docs/tools/"]
-  - ["Implementation", "/docs/impl/"]
   - ["Troubleshooting", "/docs/kaputt/"]
   - ["Glossary", "/docs/glossary/"]
 ---
@@ -33,13 +32,10 @@ The documentation for ooc is structured as follows:
   along with a typical workflow from the creation, compilation, testing, and
   documentation of a project.
 
-  5. The [Implementation](/docs/impl/) section explains how various
-  ooc features are implemented.
-
-  6. The [Troubleshooting](/docs/kaputt/) section gives advice on how
+  5. The [Troubleshooting](/docs/kaputt/) section gives advice on how
   to address frequently encountered problems.
 
-  7. The [Glossary](/docs/glossary/) is a collection of terms you may stumble
+  6. The [Glossary](/docs/glossary/) is a collection of terms you may stumble
   upon while using ooc or reading its documentation. If you don't understand
   a term, go here!
 
