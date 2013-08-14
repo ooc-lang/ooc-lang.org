@@ -285,20 +285,19 @@ She decided she needed one more module: `source/watchcorgi/config.ooc`:
     #!ooc
     import io/File
     import os/Env
-    import structs/ArrayList
+    import structs/List
     import text/StringTokenizer
 
     DEFAULT_PATH := Env get("HOME") + "/.config/corgirc"
 
     Config: class {
-      websites := ArrayList<String> new()
+      websites: List<String>
 
       init: func (path := DEFAULT_PATH) {
-	content := File new(path) read()
-	content split('\n') each(|line|
-	  website := line trim("\t ")
-	  if(!website empty?()) websites add(website)
-	)
+        content := File new(path) read()
+        websites = content split('\n') \
+                   map(|line| line trim("\t ")) \
+                   filter(|line| !line empty?())
       }
     }
 
