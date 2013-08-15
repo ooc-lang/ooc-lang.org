@@ -1,6 +1,6 @@
 code .hll { background-color: #ffffcc }
 code .c { color: #8A8A8A; font-style: italic } /* Comment */
-code .err { color: #a40000; border: 1px solid #ef2929 } /* Error */
+code .err { /* color: #a40000; border: 1px solid #ef2929 */ } /* Error */
 code .g { color: #000000 } /* Generic */
 code .k { color: #204a87; font-weight: bold } /* Keyword */
 code .l { color: #000000 } /* Literal */
