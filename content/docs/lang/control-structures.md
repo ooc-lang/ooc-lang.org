@@ -41,10 +41,12 @@ The condition can be of type `Bool` or a Pointer, in which case it will evaluate
 Each case is a scope of its own - it doesn't require braces. A case with no
 expression is a catch-all.
 
-`match` also works with any class `T` that implements the method 'matches?: func -> (other: T) -> Bool'. Another way to get complex types to work in matches is simply to override the `==` operator. Hence, Strings work:
+`match` also works with any class T that implements the method `matches?: func
+-> (other: T) -> Bool`. Another way to get complex types to work in matches
+is simply to override the `==` operator. Hence, Strings work:
 
     #!ooc
-    match (keyword) {
+    match keyword {
         case "if" =>
             Keyword IF
         case "match" =>
@@ -53,10 +55,62 @@ expression is a catch-all.
             Keyword UNKNOWN
     }
 
-A `match` is an expression, if every case ends with an expression. Hence, a match can be used as a return value, or in a function call, on the right hand side of a declaration-assignment (`:=`), etc.
+`match` is also a good way to avoid explicit casting, by matching an object
+against variable declarations, one can use its specific form directly:
+
+    #!ooc
+    result := match (op) {
+        case plus: Plus =>
+            plus lhs + plus rhs
+        case minus: Minus =>
+            minus lhs - minus rhs
+    }
+
+A `match` is an expression, if every case ends with an expression. Hence, a
+match can be used as a return value, or in a function call, on the right hand
+side of a declaration-assignment (`:=`), as demonstrated above.
 
 ## Loops
 
+Loops are structures that control the repetition of a body of code.
+
+### break / continue
+
+Two particular keywords are of interest when writing loops:
+
+  * `break` immediately exits the loop, skipping the rest of the body
+  and not executing any further iteration
+  * `continue` skips over the rest of the body and begins the next
+  iteration immediately
+
 ### while
+
+Checks the condition - if false, skips the body. If true, runs the body,
+then checks the condition again, etc.
+
+    #!ooc
+    while (!satisfied) {
+        buyStuff()
+    }
+
+### for
+
+There is no C-like `for` in ooc, only a foreach. It can iterate through
+values like ranges:
+
+    #!ooc
+    for (i in 1..10) {
+        "Counting to %d" printfln(i)
+    }
+
+Or more complex data structures:
+
+    #!ooc
+    for (element in list) {
+        "Element = %s" printfln(element toString())
+    }
+
+For an object to be iterable, it has to implement the
+`iterator: func <T> -> Iterator<T>` method.
 
 

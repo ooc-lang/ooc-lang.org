@@ -147,6 +147,17 @@ Similarly, real number types are based on C types:
 </tbody>
 </table>
 
+### Integer Ranges
+
+Any two values of integer type separated by two dots is a range. For example,
+this prints "Hello" ten times:
+
+    #!ooc
+    for (i in 0..10) {
+        // i takes values from 0 to 9
+        "Hello" println()
+    }
+
 ## Text
 
 ### Characters
@@ -383,4 +394,4 @@ A value from an enum will be of the type of the enum. See:
     isAsleep?: func (s: State) -> Bool {
       (s == State ASLEEP)
     }
-    
+
