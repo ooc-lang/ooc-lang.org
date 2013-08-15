@@ -8,20 +8,38 @@ class AddTOCFilter < Nanoc::Filter
 
   def run(content, params={})
     content.gsub('{{TOC}}') do
-      toc_items = @item[:custom_toc]
+      toc_items = nil
+
+      if @item[:custom_toc]
+        toc_items = @item[:custom_toc].map do |item|
+          {
+            level: 2,
+            title: item[0],
+            link: item[1]
+          }
+        end
+      end
 
       if @item[:glossary]
         toc_items = @item[:glossary].sort.map do |symbol, text|
           term = symbol.to_s
-          [term.capitalize, "#glossary-#{term}"]
+          {
+            level: 2,
+            title: term.capitalize,
+            link: "#glossary-#{term}"
+          }
         end
       end
 
       unless toc_items
         # Find all top-level sections
         doc = Nokogiri::HTML(content)
-        toc_items = doc.xpath('//h2').map do |header|
-          [header.inner_html, "##{header['id']}"]
+        toc_items = doc.xpath('//article/descendant::h2|//article/descendant::h3').map do |header|
+          {
+            level: header.name[-1..-1].to_i,
+            title: header.inner_html,
+            link: "##{header['id']}"
+          }
         end
       end
 
@@ -31,8 +49,17 @@ class AddTOCFilter < Nanoc::Filter
 
       # Build table of contents
       res = '<ol class="toc">'
+      level = 2
+
       toc_items.each do |toc_item|
-        res << %[<li><a href="#{toc_item[1]}">#{toc_item[0]}</a></li>]
+        if level < toc_item[:level]
+          res << '<ol>'
+        elsif level > toc_item[:level]
+          res << '</ol>'
+        end
+        level = toc_item[:level]
+
+        res << %[<li><a href="#{toc_item[:link]}">#{toc_item[:title]}</a></li>]
       end
       res << '</ol>'
 
