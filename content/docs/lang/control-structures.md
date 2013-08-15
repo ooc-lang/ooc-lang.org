@@ -22,6 +22,9 @@ a single statement, or a scope.
         allGood()
     }
 
+The condition can be of type `Bool` or a Pointer, in which case it will evaluate to
+`true` if it is non-null.
+
 ### match / case
 
 `match` is ooc's `switch`, loosely modelled after Scala's. In its simplest form, it tests for equality between an expression and several values:

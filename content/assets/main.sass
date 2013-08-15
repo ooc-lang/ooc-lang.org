@@ -302,11 +302,16 @@ header
         background: $side-content-background
         padding: 20px
 
-        ol
+        ol.toc
           li
             color: lighten(black, 20)
             line-height: 22px
             margin-left: 20px
+
+          ol
+            li
+              list-style-type: lower-alpha
+              margin-left: 40px
 
         p
           margin-bottom: 20px
