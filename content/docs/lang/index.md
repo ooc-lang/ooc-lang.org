@@ -41,8 +41,8 @@ Here's a list of sections of the language documentation:
     types - an enumeration of things. How to define them, use them, you
     name it. (No, seriously, anonymous enums don't exist)
 
- 7. The [Preprocessor](/docs/sdk/threading/) contains all things threads.
-    (Shocker, I know!)
+ 7. The [Preprocessor](/docs/lang/preprocessor/) describes what happens to
+    the code before it is even compiled.
 
 If after reading those few pages you still have questions about the ooc
 language, feel free to ask on our discussion group (see
