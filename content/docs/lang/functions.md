@@ -72,7 +72,8 @@ Iterable, blah
       // body
     }
 
-Only accessible through `va_start`, `va_next`, `va_end`. See [Variadic function][varia] on Wikipedia.
+Only accessible through `va_start`, `va_next`, `va_end`. See [Variadic
+function][varia] on Wikipedia.
 
 [varia]: http://en.wikipedia.org/wiki/Variadic_function
 
@@ -99,6 +100,9 @@ needs to be defined
     exit: extern func (Int)
 
 Lazy way: type-only args, thorough way: variable-decl-args.
+
+    #!ooc
+    exit: extern func (exitCode: Int)
 
 ## By-ref parameters
 
