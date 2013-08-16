@@ -7,65 +7,65 @@ has_toc: true
 
 Define classes with the `class` keyword:
 
-	#!ooc
-	Dog: class {
-		name: String
-		race: Race
+    #!ooc
+    Dog: class {
+      name: String
+      race: Race
 
-		init: func (=name, =race)
-		bark: func { "Woof!" println() }
-	}
+      init: func (=name, =race)
+      bark: func { "Woof!" println() }
+    }
 
-	dog := Dog new()
+    dog := Dog new()
 
 There are a few properties always available on classes. You can access the
 class of anything via the `class` member. For example:
 
-	#!ooc
-	// will be equal to 'Dog'
-	dog class name
+    #!ooc
+    // will be equal to 'Dog'
+    dog class name
 
-	// since objects are reference, will be the size of a pointer
-	dog class size
+    // since objects are reference, will be the size of a pointer
+    dog class size
 
-	// the actual size of a dog object, including members
-	dog class instanceSize
+    // the actual size of a dog object, including members
+    dog class instanceSize
 
 The class hierarchy can also be accessed:
 
-	#!ooc
-	// in this case, the Object class - otherwise, whatever super class it has
-	dog class super
+    #!ooc
+    // in this case, the Object class - otherwise, whatever super class it has
+    dog class super
 
-	// evaluates to true
-	dog instanceOf?(Dog)
+    // evaluates to true
+    dog instanceOf?(Dog)
 
-	// also evaluates to true
-	dog instanceOf?(Object)
+    // also evaluates to true
+    dog instanceOf?(Object)
 
-	// evaluates to false
-	dog instanceOf?(Cat)
+    // evaluates to false
+    dog instanceOf?(Cat)
 
 The equivalent of `instanceOf?` called on classes, is `inheritsFrom?`
 
-	#!ooc
-	// true
-	Dog inheritsFrom?(Dog)
+    #!ooc
+    // true
+    Dog inheritsFrom?(Dog)
 
-	// true
-	Dog inheritsFrom?(Object)
+    // true
+    Dog inheritsFrom?(Object)
 
-	// false
-	Dog inheritsFrom?(Cat)
+    // false
+    Dog inheritsFrom?(Cat)
 
 ### Members
 
 Members are variable declarations in the class body
 
-	#!ooc
-	Dog: class {
-		name: String
-	}
+    #!ooc
+    Dog: class {
+      name: String
+    }
 
 ### Methods
 
@@ -73,35 +73,35 @@ Methods are function declarations in the class body. `this` is accessible
 inside, and refers to the object the method is being called on. `This` refers
 to the type being defined.
 
-	#!ooc
-	Dog: class {
-		bark: func {
-			"Woof!" println()
-		}
-	}
+    #!ooc
+    Dog: class {
+      bark: func {
+        "Woof!" println()
+      }
+    }
 
-	dog := Dog new()
-	dog bark()
+    dog := Dog new()
+    dog bark()
 
 Example usage of `this`
 
-	Building: class {
-		height: Int
+    Building: class {
+      height: Int
 
-		// argument name shadows member name
-		setHeight: func (height: Int) {
-			if (height < 0 || height > 300) return
+      // argument name shadows member name
+      setHeight: func (height: Int) {
+        if (height < 0 || height > 300) return
 
-			// using `this` explicitly to differenciate them
-			this height = height
-		}
-	}
+        // using `this` explicitly to differenciate them
+        this height = height
+      }
+    }
 
 Example usage of `This`
 
-	Engine: class {
-		logger := Log getLogger(This name)
-	}
+    Engine: class {
+      logger := Log getLogger(This name)
+    }
 
 ## Static fields
 
@@ -114,10 +114,10 @@ Example usage of `This`
 Define the `init` method (with a suffix to have different constructors), and
 a `new` static method will get defined automatically.
 
-	#!ooc
-	Dog: class {
-		name: String
+    #!ooc
+    Dog: class {
+      name: String
 
-		init: func (=name)
-		init: func ~default { name = "Fido" }
-	}
+      init: func (=name)
+      init: func ~default { name = "Fido" }
+    }

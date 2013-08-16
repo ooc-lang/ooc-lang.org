@@ -143,7 +143,7 @@ The syntax is similar to version blocks in ooc. Here is an example from
     Main: isaac
 
     version (windows) {
-	    Libs: ./isaac.res
+      Libs: ./isaac.res
     }
 
 Compiling under windows, the linker command line will contain the additional file
