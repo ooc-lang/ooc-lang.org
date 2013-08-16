@@ -4,7 +4,7 @@ has_toc: true
 custom_toc:
   - ["Values", "/docs/lang/values/"]
   - ["Control Structures", "/docs/lang/control-structures/"]
-  - ["Functions", "/docs/lang/func/"]
+  - ["Functions", "/docs/lang/functions/"]
   - ["Classes", "/docs/lang/classes/"]
   - ["Covers", "/docs/lang/covers/"]
   - ["Enums", "/docs/lang/enums/"]
