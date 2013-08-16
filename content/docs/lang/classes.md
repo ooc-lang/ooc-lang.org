@@ -85,6 +85,7 @@ to the type being defined.
 
 Example usage of `this`
 
+    #!ooc
     Building: class {
       height: Int
 
@@ -99,6 +100,7 @@ Example usage of `this`
 
 Example usage of `This`
 
+    #!ooc
     Engine: class {
       logger := Log getLogger(This name)
     }
@@ -107,7 +109,55 @@ Example usage of `This`
 
 ### Members
 
+Static fields belong to a class, rather than to an instance.
+
+    #!ooc
+    Node: class {
+      count: static Int = 0
+
+      init: func {
+        This count += 1
+      }
+    }
+
+    for (i in 0..10) {
+      Node new()
+    }
+    "Number of nodes: %d" printfln(Node count)
+
+Static fields can also be accessed without explicitly referring to `This`.
+The declare-assignment operator, `:=`, also works with the `static` keyword before
+the right-hand-side value:
+
+    #!ooc
+    Node: class {
+      count := static 0
+
+      init: func {
+        count += 1
+      }
+    }
+
+    // etc.
+
 ### Methods
+
+Static methods also belong to a class:
+
+    #!ooc
+    Map: class {
+      tiles := Map<Tile> new()
+
+      generate: static func (width, height: Int) -> This {
+        m := This new()
+        for (y in 0..height) for (x in 0..width) {
+          m addTile(x, y)
+        }
+        m
+      }
+
+      addTile: func (x, y: Int) { /* ... */ }
+    }
 
 ## Constructors
 
@@ -121,3 +171,56 @@ a `new` static method will get defined automatically.
       init: func (=name)
       init: func ~default { name = "Fido" }
     }
+
+For alternative instanciation strategies, defining a custom, static `new`
+method, returning an instance of type `This`, works just as well:
+
+    #!ooc
+    Dog: class {
+      pool := static Stack<This> new()
+
+      new: static func -> This {
+        if (pool empty?()) {
+          obj := This alloc()
+          obj __defaults__()
+          obj
+        } else {
+          pool pop()
+        }
+      }
+
+      free: func {
+        pool push(this)
+      }
+    }
+
+## Inheritance
+
+### Extends
+
+Simple inheritance is achieved through the `extends` keyword:
+
+    #!ooc
+    Animal: class {}
+    Dog: class extends Animal {}
+
+### Super methods
+
+Calling `super` will call the definition of a method in the super-class.
+
+    #!ooc
+    SimpleApp: class {
+      init: func {
+        loadConfig()
+      }
+
+      // ...
+    }
+
+    NetworkedApp: class extends SimpleApp {
+      init: func {
+        super()
+        initNetworking()
+      }
+    }
+
