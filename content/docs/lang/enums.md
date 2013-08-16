@@ -124,3 +124,25 @@ Multiplication increments are valid as well:
     }
 
 And multiplication increments are actually quite handy for things like bitsets.
+
+## Extern enums
+
+Enums can be extern, in which case every element will be a bare symbol, which should
+be defined externally, in C code for example:
+
+    #!ooc
+    ShutdownParam: extern enum {
+      SHUT_RD    // generate C name SHUT_RD
+      SHUT_WR    // generate C name SHUT_WR
+      SHUT_RDWR  // generate C name SHUT_RDWR
+    }
+
+Or, each element can be aliased individually:
+
+    #!ooc
+    ShutdownParam: extern enum {
+      extern(SHUT_RD) read
+      extern(SHUT_WR) write
+      extern(SHUT_RDWR) readWrite
+    }
+
