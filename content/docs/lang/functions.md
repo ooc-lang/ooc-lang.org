@@ -41,7 +41,10 @@ expression will be returned. This works with ifs, matches, etc.
 
 ## Suffixes / overloading
 
-Can have same name, different signatures, as long as they have different suffixes:
+Functions can have the same name, but different signatures (argument lists and
+return type), as long as they have different suffixes. They can be called without
+suffix, in which case the compiler will infer the right function to call, or
+explicitly by specifying the suffix by hand:
 
     #!ooc
     add: func ~ints (a, b: Int) -> Int { a + b }
