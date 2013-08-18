@@ -1,15 +1,7 @@
 ---
 title: SDK
 has_toc: true
-custom_toc:
-  - ["lang", "/docs/sdk/lang/"]
-  - ["structs", "/docs/sdk/structs/"]
-  - ["math", "/docs/sdk/math/"]
-  - ["os", "/docs/sdk/os/"]
-  - ["net", "/docs/sdk/net/"]
-  - ["text", "/docs/sdk/text/"]
-  - ["threading", "/docs/sdk/threading/"]
-  - ["native", "/docs/sdk/native/"]
+index: true
 ---
 
 ## An overview of the SDK's packages

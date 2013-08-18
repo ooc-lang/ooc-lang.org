@@ -37,7 +37,7 @@ class AddTOCFilter < Nanoc::Filter
         toc_items = doc.xpath('//article/descendant::ol/li/descendant::a').map do |link|
           {
             level: 2,
-            title: link.inner_html,
+            title: link.inner_html.capitalize,
             link: "#{link[:href]}"
           }
         end

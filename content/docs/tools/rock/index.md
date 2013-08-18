@@ -1,17 +1,14 @@
 ---
 title: rock
 has_toc: true
-custom_toc:
-  - ["Basic usage", "/docs/tools/rock/basic/"]
-  - ["Advanced usage", "/docs/tools/rock/advanced/"]
-  - ["Usefiles", "/docs/tools/rock/usefiles/"]
+index: true
 ---
 
 ## About rock
 
 rock takes your ooc sources, tinkers around and, if you're lucky, gives you an executable.
 
- * Read about the [basic usage](/docs/tools/rock/basic/) of rock: Running it with usefiles
+ 1. Read about the [basic usage](/docs/tools/rock/basic/) of rock: Running it with usefiles
    or ooc files
- * Then, you can read on about the [advanced usage](/docs/tools/rock/advanced) of rock.
- * Learn more about [usefiles](/docs/tools/rock/usefiles)
+ 2. Then, you can read on about the [advanced usage](/docs/tools/rock/advanced) of rock.
+ 3. Learn more about [usefiles](/docs/tools/rock/usefiles)
