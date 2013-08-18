@@ -224,3 +224,20 @@ Calling `super` will call the definition of a method in the super-class.
       }
     }
 
+## Properties
+
+Instead of plain, simple members, one can also define properties
+for classes - that is, `virtual` members that exist as read-only,
+write-only, or read-write behind getters and setters.
+
+    #!ooc
+    Person: class {
+      lastName, firstName: String
+
+      fullName: String {
+        get {
+          "%s %s" format(lastName, firstName)
+        }
+      }
+    }
+
