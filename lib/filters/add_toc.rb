@@ -31,6 +31,18 @@ class AddTOCFilter < Nanoc::Filter
         end
       end
 
+      if @item[:index]
+        # Find all top-level sections
+        doc = Nokogiri::HTML(content)
+        toc_items = doc.xpath('//article/descendant::ol/li/descendant::a').map do |link|
+          {
+            level: 2,
+            title: link.inner_html,
+            link: "##{link[:href]}"
+          }
+        end
+      end
+
       unless toc_items
         # Find all top-level sections
         doc = Nokogiri::HTML(content)

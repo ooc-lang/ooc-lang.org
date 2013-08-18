@@ -1,16 +1,7 @@
 ---
 title: Language
 has_toc: true
-custom_toc:
-  - ["Values", "/docs/lang/values/"]
-  - ["Control Structures", "/docs/lang/control-structures/"]
-  - ["Data Structures", "/docs/lang/data-structures/"]
-  - ["Functions", "/docs/lang/functions/"]
-  - ["Classes", "/docs/lang/classes/"]
-  - ["Operators", "/docs/lang/operators/"]
-  - ["Covers", "/docs/lang/covers/"]
-  - ["Enums", "/docs/lang/enums/"]
-  - ["Preprocessor", "/docs/lang/preprocessor/"]
+index: true
 ---
 
 ## The ooc language in a few chapters
