@@ -40,7 +40,11 @@ Here's a list of sections of the language documentation:
     types - an enumeration of things. How to define them, use them, you
     name it. (No, seriously, anonymous enums don't exist)
 
- 9. The [Preprocessor](/docs/lang/preprocessor/) describes what happens to
+ 9. The [Generics](/docs/lang/generics/) chapter talks about parameterized
+    types, how to define them, how to use them, what are their strong points
+    and their shortcomings.
+
+ 10. The [Preprocessor](/docs/lang/preprocessor/) describes what happens to
     the code before it is even compiled.
 
 If after reading those few pages you still have questions about the ooc
