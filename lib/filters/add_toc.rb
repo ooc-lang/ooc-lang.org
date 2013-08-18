@@ -38,7 +38,7 @@ class AddTOCFilter < Nanoc::Filter
           {
             level: 2,
             title: link.inner_html,
-            link: "##{link[:href]}"
+            link: "#{link[:href]}"
           }
         end
       end
