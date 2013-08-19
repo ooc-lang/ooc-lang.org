@@ -129,8 +129,10 @@ A list of all currently supported fields in usefiles follows.
 
 ## Version blocks
 
-Similarily to ooc's version blocks (TODO insert ref), usefile version blocks
+Similarily to ooc's [version blocks][ver], usefile version blocks
 can be used to work with different requirements on different platforms.
+
+[ver]: /docs/lang/preprocessor/#version-blocks
 
 The syntax is similar to version blocks in ooc. Here is an example from
 [Paper Isaac](https://github.com/nddrylliog/isaac-paper)'s usefile:
