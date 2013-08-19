@@ -40,15 +40,19 @@ Here's a list of sections of the language documentation:
     types - an enumeration of things. How to define them, use them, you
     name it. (No, seriously, anonymous enums don't exist)
 
- 9. The [Generics](/docs/lang/generics/) chapter talks about parameterized
+ 9. The [Tuples](/docs/lang/tuples/) chapter explains what tuples are and
+    what they aren't. It covers multi-return, multi-declaration, variable
+    swapping, and cover literals.
+
+ 10. The [Generics](/docs/lang/generics/) chapter talks about parameterized
     types, how to define them, how to use them, what are their strong points
     and their shortcomings.
 
- 10. The [Exceptions](/docs/lang/exceptions/) chapter talks about error
+ 11. The [Exceptions](/docs/lang/exceptions/) chapter talks about error
     handling, how to throw and catch Exceptions, and how to create your own
     exception types.
 
- 11. The [Preprocessor](/docs/lang/preprocessor/) describes what happens to
+ 12. The [Preprocessor](/docs/lang/preprocessor/) describes what happens to
     the code before it is even compiled.
 
 If after reading those few pages you still have questions about the ooc

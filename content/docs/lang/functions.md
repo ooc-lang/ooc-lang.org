@@ -187,4 +187,3 @@ Also works with several parameters:
     )
 
 Argument types are inferred, hence, the code is very short.
-
