@@ -241,3 +241,20 @@ write-only, or read-write behind getters and setters.
       }
     }
 
+## The extend keyword
+
+This applies to classes, covers, and enums alike. The `extend`
+keyword can add superficial methods to any type, even if it is
+defined in another module.
+
+It is useful to add convenience methods of your own without having
+to modify the original library.
+
+    #!ooc
+    extend Float {
+      negated: func -> This { -this }
+    }
+
+    if (-3.14 == 3.14 negated()) {
+      "Everything is fine" println()
+    }
