@@ -13,7 +13,7 @@ to produce either an executable or a library.
  1. The [Basic usage](/docs/tools/rock/basic/) section explains how to quickly get
     up and running, using rock to compile ooc projects.
 
- 2. The [Drivers](/doc/tools/rock/drivers/) section gives an overview of rock's various
+ 2. The [Drivers](/docs/tools/rock/drivers/) section gives an overview of rock's various
     drivers, akin to compiling strategies, like the sequence driver (default), the make
     driver, and the android driver.
 
