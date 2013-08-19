@@ -44,7 +44,11 @@ Here's a list of sections of the language documentation:
     types, how to define them, how to use them, what are their strong points
     and their shortcomings.
 
- 10. The [Preprocessor](/docs/lang/preprocessor/) describes what happens to
+ 10. The [Exceptions](/docs/lang/exceptions/) chapter talks about error
+    handling, how to throw and catch Exceptions, and how to create your own
+    exception types.
+
+ 11. The [Preprocessor](/docs/lang/preprocessor/) describes what happens to
     the code before it is even compiled.
 
 If after reading those few pages you still have questions about the ooc
