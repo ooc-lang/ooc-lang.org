@@ -13,3 +13,13 @@ There are some tools you should know about when you start looking into ooc.
 
  2. [sam](/docs/tools/sam/) helps you to keep all your libraries together and up-to-date.
    It's also able to resolve dependencies without any hassle.
+
+Tools like autoconf, automake, even CMake, are irrelevant in the context of
+ooc, since rock drives the whole compilation process.
+
+ooc libraries have one, standardized way to be built - as such, the ooc ecosystem
+is a lot more homogenous than, say, the C ecosystem. Complexity is dealt with
+through [usefiles](/docs/tools/rock/usefiles/) and the such.
+
+Still, the ooc toolchain is quite flexible, working on major desktop OSes, and
+more constrained platform such as Android.
