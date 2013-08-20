@@ -51,6 +51,15 @@ a directory.
     #!ooc
     tmpFile remove()
 
+The `read` and `write` methods will read a whole file and replace the content
+of a file with the given string, respectively.
+
+    #!ooc
+    respectify: func (file: File) {
+      text := file read()
+      file write(text replaceAll("yes", "yes, sir"))
+    }
+
 ### Walking through directories
 
 The `getChildren` method will return a list of `File` instances
@@ -70,21 +79,153 @@ of a given directory. When the callback returns false, the search
 is terminated.
 
     #!ooc
-    findFile: func (prefix: String) {
-
+    findFile: func (prefix: String) -> File {
+      result: File
+      baseDirectory walk(|f|
+        if (f startsWith?(prefix)) {
+          result = f
+          return false
+        }
+        true
+      )
+      result
     }
 
 ### Permissions
 
-The methods `ownerPerm`, `groupPerm`, and `otherPerm` return
-an int mask with permissions.
+The methods `ownerPerm`, `groupPerm`, and `otherPerm` return an int mask with
+permissions.
 
-Note that using octal number literals might be a good idea
-to test against that. Unlike C, `0777` is decimal in ooc.
-You want to write `0c777` instead.
+Note that using octal number literals might be a good idea to test against
+that. Unlike C, `0777` is decimal in ooc. You want to write `0c777` instead.
 
 ### Current directory
 
-The static method `File getCwd()` will return the current
-working directory on any platform.
+The static method `File getCwd()` will return the current working directory on
+any platform.
+
+## Reader / Writer
+
+The `io/Reader` and `io/Writer` modules contains interfaces used for input/output.
+
+For files, use the `io/FileReader` and `io/FileWriter` implementations. To work in
+memory, use the `io/BufferReader` and `io/BufferWriter` implementations.
+
+A reader or writer should be closed (by calling `reader close()` or `writer close()`)
+when done with it, so that the corresponding resources may be freed.
+
+### Reader basics
+
+Some C libraries have an interface similar to `io/Reader`. The main I/O loop might
+look like the following:
+
+    #!ooc
+    import io/Reader
+
+    process: func (reader: Reader) {
+      buffer := Buffer new(1024)
+
+      while (reader hasNext?()) {
+        bytesRead := reader read(buffer)
+        // do something with buffer
+      }
+      reader close()
+    }
+
+A reader can also work with raw memory chunks:
+
+    #!ooc
+    onRead: func (reader: Reader, buffer: UInt8*, bufferSize: Int) {
+      // fill buffer from beginning, 0 is the offset
+      reader read(buffer, 0, bufferSize)
+    }
+
+Or one character at a time:
+
+    #!ooc
+    match (reader read()) {
+      case 'A' => "Good!"
+      case 'F' => "Also good."
+      case => "Meh."
+    }
+
+An entire stream can be read to a String:
+
+    #!ooc
+    fr := FileReader new("file.txt")
+    contents := fr readAll()
+    fr close()
+
+(Note that this would compactly be achieved by `File new("file.txt") read()`)
+
+For more details, refer to the oocdocs.
+
+### Writer basics
+
+Similarly, the writer interface works with buffers, raw memory chunks, single characters,
+or strings as needed:
+
+    #!ooc
+    manipulate: func (w: Writer) {
+      // char
+      w write('a')
+
+      // string
+      w write("abc")
+
+      // buffer
+      chars := "moonlight" toCString()
+      w write(chars, 4) // only writes "moon"
+    }
+
+For more details, refer to the oocdocs.
+
+## BinarySequence
+
+The `io/BinarySequence` module is meant to help deal with binary protocols, precise
+on the width and endianness of types being written to a stream.
+
+### BinarySequenceReader
+
+Here's an example:
+
+    #!ooc
+    // read a file as binary
+    file := File new("assets", "binary.dat")
+    seq := BinarySequenceReader new(FileReader new(file))
+
+    // read an 16-bit unsigned int:
+    numElements := seq u16()
+
+    for (i in 0..numElements) {
+      // coordinates are two floats
+      x := seq float32()
+      y := seq float32()
+      // do something with x, y
+    }
+
+    // check magicn number at the end
+    assert (seq s32() == 0xdeadbeef)
+
+For more details, refer to the oocdocs.
+
+### BinarySequenceWriter
+
+The corresponding module exists for writing binary sequences.
+
+    #!ooc
+    // write a binary file
+    file := File new("assets", "binary.dat")
+    seq := BinarySequenceWriter new(FileWriter new(file))
+
+    seq u16(elements size)
+
+    for (elem in elements) {
+      seq float32(elem x)
+      seq float32(elem y)
+    }
+
+    seq s32(0xdeadbeef)
+
+For more details, refer to the oocdocs.
 
