@@ -35,3 +35,7 @@ lighter, for example.
   5. The [Exceptions](/docs/sdk/lang/exceptions/) section talks about
      default properties of exceptions, and how to extend them.
 
+  6. The [Memory](/docs/sdk/lang/memory/) section talks about memory
+     management, mostly just how to deal with blocks of memory rather
+     than more high-level data structures.
+
