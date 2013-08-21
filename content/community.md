@@ -27,3 +27,4 @@ and more. It is also a good place to discuss development-related brainstorming,
 such as proposed features.
 
 [wiki]: https://github.com/nddrylliog/rock/wiki
+

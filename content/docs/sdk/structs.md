@@ -257,3 +257,4 @@ Example usage:
 bounds checking, no type checking at all. To be used when you absolutely,
 positively need to squeeze bytes together as close as possible and don't care
 about safety at all.
+
