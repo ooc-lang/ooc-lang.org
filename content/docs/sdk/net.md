@@ -36,14 +36,30 @@ Here's an example usage of ServerSocket serving as a makeshift HTTP
 server (don't do that, though):
 
     #!ooc
+    import net/[ServerSocket]
+
     socket := ServerSocket new("0.0.0.0", 8000)
+    socket listen()
+    "Listening..." println()
 
     while(true) {
         conn := socket accept()
+        "Got a connection!" println()
+
+        while (conn in readLine() trim() != "") {
+          // read the request
+        }
+
+        conn out write("HTTP/1.1 200 OK\r\n")
+        conn out write("Content-Type: text/html\r\n")
+        conn out write("\r\n")
         conn out write("<html><body>\
           Hello, from the ooc socket world!</body></html>")
+        conn out write("\r\n")
         conn close()
     }
+
+Don't forget to call `listen()` before trying to `accept()` connections.
 
 ### TCPSocket
 
@@ -51,6 +67,8 @@ Same as the ServerSocket, but on the client side. Make requests like
 that (or don't - use a proper HTTP library):
 
     #!ooc
+    import net/[TCPSocket]
+
     socket := TCPSocket new("ooc-lang.org", 80)
     socket connect()
     socket out write("GET / HTTP/1.1\n")
@@ -62,6 +80,9 @@ that (or don't - use a proper HTTP library):
     "We got a response! %s" printfln(line)
 
 Seriously. Use a proper HTTP library. But that's an example.
+
+Also, don't forget to call `connect()` before attempting to use `out`
+or `in`.
 
 ## UDP
 
