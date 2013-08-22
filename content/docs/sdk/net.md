@@ -84,7 +84,34 @@ Seriously. Use a proper HTTP library. But that's an example.
 Also, don't forget to call `connect()` before attempting to use `out`
 or `in`.
 
-## UDP
+## UDPSocket
 
+Unlike TCP, UDP is unidirectional - some sockets bind and only get to
+receive, and some sockets don't bind and can only send.
+
+There's also no guarantee that anything sent over UDP ever arrives, and
+order is not guaranteed either.
+
+When you create an `UDPSocket`, always specify a hostname (or an ip) and a port, like this:
+
+    #!ooc
+    socket := UDPSocket new("localhost", 5000)
+
+If you want to receive datagrams, call bind():
+
+    #!ooc
+    socket bind()
+
+    while (true) {
+      buffer := socket receive(128)
+      buffer toString() println()
+    }
+
+If you want to send datagrams, just call send:
+
+    #!ooc
+    socket send("udp is fun")
+
+That's about it for now.
 
 
