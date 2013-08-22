@@ -84,13 +84,15 @@ Seriously. Use a proper HTTP library. But that's an example.
 Also, don't forget to call `connect()` before attempting to use `out`
 or `in`.
 
-## UDPSocket
+## UDP
 
 Unlike TCP, UDP is unidirectional - some sockets bind and only get to
 receive, and some sockets don't bind and can only send.
 
 There's also no guarantee that anything sent over UDP ever arrives, and
 order is not guaranteed either.
+
+### UDPSocket
 
 When you create an `UDPSocket`, always specify a hostname (or an ip) and a port, like this:
 
