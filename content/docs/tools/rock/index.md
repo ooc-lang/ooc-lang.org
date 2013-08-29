@@ -22,3 +22,16 @@ to produce either an executable or a library.
 
  4. The [Usefiles](/docs/tools/rock/usefiles/) section describes the format of `.use` files,
     which define the characteristics of an ooc app or library.
+
+ 5. The [Garbage Collector](/docs/tools/rock/gc/) section talks about the Garbage Collection
+    strategy in rock, how to make sure things work well on different plaforms, how the
+    Boehm GC is bundled, etc.
+
+ 6. The [Debugging](/docs/tools/rock/debug/) section talks about what to do when a program
+    doesn't behave correctly. Debug symbols, stack traces, debugging on particularly painful
+    platforms like Windows.
+
+ 7. The [Packaging](/docs/tools/rock/packaging/) section talks about releasing standalone
+    applications coded in ooc, such as games — when you don't want to have users install
+    dependencies on their own, but would rather bundle everything together.
+

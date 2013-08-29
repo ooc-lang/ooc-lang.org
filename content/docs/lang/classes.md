@@ -16,10 +16,35 @@ Define classes with the `class` keyword:
       bark: func { "Woof!" println() }
     }
 
+Then, call `new` on it to make an instance of it:
+
+    #!ooc
     dog := Dog new()
 
-There are a few properties always available on classes. You can access the
-class of anything via the `class` member. For example:
+An instance of a class is also called an object.
+
+## Members
+
+Members are variables tied to an instance:
+
+    #!ooc
+    Dog: class {
+      // declare a field named 'name'
+      name: String
+
+      init: func (=name)
+    }
+
+    d1 := Dog new("Pluty")
+    d2 := Dog new("Snoopo")
+
+    "d1's name is = %s" printfln(d1 name)
+    "d2's name is = %s" printfln(d2 name)
+
+### Built-in members
+
+There are a few members always available on classes. You can access the
+class of any object via the `class` member. For example:
 
     #!ooc
     // will be equal to 'Dog'
@@ -31,85 +56,9 @@ class of anything via the `class` member. For example:
     // the actual size of a dog object, including members
     dog class instanceSize
 
-The class hierarchy can also be accessed:
+### Static members
 
-    #!ooc
-    // in this case, the Object class - otherwise, whatever super class it has
-    dog class super
-
-    // evaluates to true
-    dog instanceOf?(Dog)
-
-    // also evaluates to true
-    dog instanceOf?(Object)
-
-    // evaluates to false
-    dog instanceOf?(Cat)
-
-The equivalent of `instanceOf?` called on classes, is `inheritsFrom?`
-
-    #!ooc
-    // true
-    Dog inheritsFrom?(Dog)
-
-    // true
-    Dog inheritsFrom?(Object)
-
-    // false
-    Dog inheritsFrom?(Cat)
-
-### Members
-
-Members are variable declarations in the class body
-
-    #!ooc
-    Dog: class {
-      name: String
-    }
-
-### Methods
-
-Methods are function declarations in the class body. `this` is accessible
-inside, and refers to the object the method is being called on. `This` refers
-to the type being defined.
-
-    #!ooc
-    Dog: class {
-      bark: func {
-        "Woof!" println()
-      }
-    }
-
-    dog := Dog new()
-    dog bark()
-
-Example usage of `this`
-
-    #!ooc
-    Building: class {
-      height: Int
-
-      // argument name shadows member name
-      setHeight: func (height: Int) {
-        if (height < 0 || height > 300) return
-
-        // using `this` explicitly to differenciate them
-        this height = height
-      }
-    }
-
-Example usage of `This`
-
-    #!ooc
-    Engine: class {
-      logger := Log getLogger(This name)
-    }
-
-## Static fields
-
-### Members
-
-Static fields belong to a class, rather than to an instance.
+Static members belong to a class, rather than to an instance.
 
     #!ooc
     Node: class {
@@ -124,6 +73,10 @@ Static fields belong to a class, rather than to an instance.
       Node new()
     }
     "Number of nodes: %d" printfln(Node count)
+
+In the code above, `count` is "shared" among all instances of node - hence,
+incrementing it in the constructor will be "remembered" the next time a node
+is created. So, we really are counting the number of nodes being created.
 
 Static fields can also be accessed without explicitly referring to `This`.
 The declare-assignment operator, `:=`, also works with the `static` keyword before
@@ -140,9 +93,103 @@ the right-hand-side value:
 
     // etc.
 
-### Methods
+### Properties
 
-Static methods also belong to a class:
+Instead of plain, simple members, one can also define properties
+for classes - that is, `virtual` members that exist as read-only,
+write-only, or read-write behind getters and setters.
+
+    #!ooc
+    Person: class {
+      lastName, firstName: String
+
+      fullName: String {
+        get {
+          "%s %s" format(lastName, firstName)
+        }
+      }
+    }
+
+A read-only property is one that only has a getter. Similarly,
+a write-only property is one that only has a setter.
+
+    #!ooc
+    Person: class {
+      lastName, firstName: String
+
+      name: String {
+        set (name) {
+          tokens := name split(" ")
+          assert(tokens size == 2)
+          (firstName, lastName) = (tokens[0], tokens[1])
+        }
+      }
+    }
+
+Note that arguments in a setter's definition are only names, not types.
+The type of the argument is inferred from the type of the property itself.
+
+Empty getters and setters are valid as well, for a simple read-write property:
+
+    #!ooc
+    Person: class {
+      name: String { get set }
+    }
+
+## Methods
+
+Methods are function declarations in the class body, that are called
+on a particular instance:
+
+    #!ooc
+    Dog: class {
+      bark: func {
+        "Woof!" println()
+      }
+    }
+
+    dog := Dog new()
+    dog bark()
+
+### this and This
+
+In a method, the special variable `this` is accessible, and refers to the object
+the method is being called on.
+
+Example usage of `this`
+
+    #!ooc
+    Building: class {
+      height: Int
+
+      // argument name shadows member name
+      setHeight: func (height: Int) {
+        if (height < 0 || height > 300) return
+
+        // using `this` explicitly to differenciate them
+        this height = height
+      }
+    }
+
+
+`This`, on the other hand, refers to the type currently being defined:
+
+    #!ooc
+    Engine: class {
+      logger := Log getLogger(This name)
+    }
+
+In the example above, we are using the name of the class we are currently defining,
+instead of typing out `"Engine"` directly — that way, if we rename the class, the
+code will still be valid. It's a good way to [avoid repeating yourself][dry].
+
+[dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
+
+### Static methods
+
+Static methods also belong to a specific class, but they're not tied to
+a particular instance. Hence, you don't have access to `this` in a static
+method because it's not called on an instance:
 
     #!ooc
     Map: class {
@@ -158,6 +205,10 @@ Static methods also belong to a class:
 
       addTile: func (x, y: Int) { /* ... */ }
     }
+
+In some languages, `new` is a keyword used to create objects. In ooc,
+it's just a static method doing some allocation and initialization, and
+returning a new instance. See "Constructors" for more details.
 
 ## Constructors
 
@@ -194,6 +245,51 @@ method, returning an instance of type `This`, works just as well:
       }
     }
 
+We can clearly see that the `alloc` static method here does memory allocation
+for the object, but what about `__defaults__`? It contains initializers, discussed
+in the next section.
+
+### Initializers
+
+We've discussed methods, but not all code that belong to a class is in an explicit
+method. For example, in this code, declaration and initialization are clearly separate:
+
+    #!ooc
+    Group: class {
+      number: Int
+
+      init: func {
+        number = 42
+      }
+    }
+
+But what happens with the following code?
+
+    #!ooc
+    Group: class {
+      number := 42
+
+      init: func {
+      }
+    }
+
+The resulting executable does the same. The class contains a field
+of type Int, initially equal to 0, but there's an implicit `__defaults__`
+method that contains all code outside of a method, that gets executed before
+the `init` method is called.
+
+Above, the example is a pattern you'll see often - however, one can put
+any amount of code directly in the class declaration:
+
+    #!ooc
+    Dog: class {
+        "You made a dog!" println()
+        init: func
+    }
+
+Every time `Dog new()` is called, the `"You made a dog!"` string will get
+printed.
+
 ## Inheritance
 
 ### Extends
@@ -204,7 +300,16 @@ Simple inheritance is achieved through the `extends` keyword:
     Animal: class {}
     Dog: class extends Animal {}
 
-### Super methods
+In this case, an instance of `Dog` will also be an instance of `Animal`,
+and it inherits all its methods and members.
+
+For example, a function expecting an `Animal` can be passed a `Dog` instead.
+That is, if your code is designed correctly. For some encyclopedic knowledge
+on the matter, check out the [Liskov Substition Principle][liskov]
+
+[liskov]: http://en.wikipedia.org/wiki/Liskov_substitution_principle
+
+### Super
 
 Calling `super` will call the definition of a method in the super-class.
 
@@ -224,24 +329,61 @@ Calling `super` will call the definition of a method in the super-class.
       }
     }
 
-## Properties
-
-Instead of plain, simple members, one can also define properties
-for classes - that is, `virtual` members that exist as read-only,
-write-only, or read-write behind getters and setters.
+When one just wants to relay a constructor, one can use `super func`:
 
     #!ooc
-    Person: class {
-      lastName, firstName: String
+    MyException: class extends Exception {
+      init: super func
+    }
 
-      fullName: String {
-        get {
-          "%s %s" format(lastName, firstName)
-        }
+Which is equivalent to the following:
+
+    #!ooc
+    MyException: class extends Exception {
+      init: func {
+        super()
       }
     }
 
-## The extend keyword
+`super func` can take a suffix, and it relays argument as well. It is useful
+when you really don't have much more to do in the constructor of the sub-class.
+
+Please bear in mind that `super func` is relatively hackish - it is documented
+here for completeness' sake, but it is more of a rapid coding trick than a good
+practice, really.
+
+### Class hierarchy
+
+The class hierarchy can be explored via built-in members and methods on objects
+and classes:
+
+    #!ooc
+    // in this case, the Object class - otherwise, whatever super class it has
+    dog class super
+
+    // evaluates to true
+    dog instanceOf?(Dog)
+
+    // also evaluates to true
+    dog instanceOf?(Object)
+
+    // evaluates to false
+    dog instanceOf?(Cat)
+
+The equivalent of `instanceOf?` called on classes, is `inheritsFrom?`
+
+    #!ooc
+    // true
+    Dog inheritsFrom?(Dog)
+
+    // true
+    Dog inheritsFrom?(Object)
+
+    // false
+    Dog inheritsFrom?(Cat)
+
+
+## Adding methods after definition
 
 This applies to classes, covers, and enums alike. The `extend`
 keyword can add superficial methods to any type, even if it is
@@ -258,3 +400,4 @@ to modify the original library.
     if (-3.14 == 3.14 negated()) {
       "Everything is fine" println()
     }
+
