@@ -39,6 +39,57 @@ function flow early. Hence, the first example can be rewritten like so:
 In the absence of a `return` keyword in the body of a non-void function, the last
 expression will be returned. This works with ifs, matches, etc.
 
+## Main
+
+Perhaps the most interesting function at first is the `main` function, aka the
+entry point of a program. If not defined, one will be implicitly created. For
+example, the following is a valid ooc program:
+
+    #!ooc
+    "Hi, world!" println()
+
+If we don't need to process command-line arguments, we can define the main function
+simply like this:
+
+    #!ooc
+    main: func {
+      "Hi, world!" println()
+    }
+
+Note that any could outside the main function (and outside class definitions, etc.)
+will get executed before the code in the main function is. This gives a chance for
+module to run initialization code (e.g. C libraries that need some routine to be called
+before anything else, to set up stuff).
+
+If we do want command-line arguments, we can do it the C way:
+
+    #!ooc
+    main: func (argv: Int, argc: CString*) {
+      for (i in 0..argv) {
+        arg = argc[i]
+        "Got argument: %s" printfln(arg toString())
+      }
+    }
+
+Or, we can use an array of strings:
+
+    #!ooc
+    main: func (args: String[]) {
+      // and so on..
+    }
+
+Or, we can use an ArrayList of Strings, if more convenient:
+
+    #!ooc
+    import structs/ArrayList
+    main: func (args: ArrayList<String>) {
+      // etc.
+    }
+
+Note that command line arguments might not be relevant for all ooc implementations.
+One could imagine an ooc implementation that compiles down to JavaScript - in which
+case, running in a browser, the command line arguments would always be empty.
+
 ## Suffixes / overloading
 
 Functions can have the same name, but different signatures (argument lists and
