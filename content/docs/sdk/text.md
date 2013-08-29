@@ -1,9 +1,9 @@
 ---
-title: The text/ package
+title: The text package
 has_toc: true
 ---
 
-## The text/ package
+## The text package
 
 This package contains various helper classes to work with text
 and JSON.
@@ -58,7 +58,6 @@ Sometimes, one needs to split a string at a special character and turn
 it into an array. In ooc, the `text/StringTokenizer` module adds
 every desirable variation of the good old `split` method to `Buffer` and `String`,
 each returning an `ArrayList`:
-
 
     #!ooc
     import text/StringTokenizer

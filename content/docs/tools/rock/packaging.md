@@ -153,6 +153,11 @@ We need to distribute libraries inside the app bundle - however, so that the
 paths are resolve correctly, we'll need to use [dylibbundler][dyb] to modify
 the executable and 'fix' the paths to these libraries.
 
+With [Homebrew][macbrew], installing dylibbundler is as simple as doing:
+
+    brew install dylibbundler
+
+[macbrew]: http://brew.sh/
 [dyb]: http://macdylibbundler.sourceforge.net/
 
 The first step is to tell the C compiler to reserve enough room to modify the
@@ -369,7 +374,7 @@ To create a `.tar.gz`, do:
 
 To create a `.tar.bz2`, use `cjvf` instead.
 
-TO create a `.tar.xz`:
+To create a `.tar.xz`:
 
     tar cf --xz foo-1.0-linux.tar.xz foo-1.0-linux
 
