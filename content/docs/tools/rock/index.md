@@ -23,7 +23,7 @@ to produce either an executable or a library.
  4. The [Usefiles](/docs/tools/rock/usefiles/) section describes the format of `.use` files,
     which define the characteristics of an ooc app or library.
 
- 5. The [Garbage Collector](/docs/tools/rock/gc/) section talks about the Garbage Collection
+ 5. The [Garbage Collection](/docs/tools/rock/gc/) section talks about the Garbage Collection
     strategy in rock, how to make sure things work well on different plaforms, how the
     Boehm GC is bundled, etc.
 
