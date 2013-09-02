@@ -33,117 +33,172 @@ Available version blocks and their corresponding C defines are as follow:
 <tbody>
 
 <tr>
-<td>identifier</td>
-<td>C symbol</td>
+<td>Identifier</td>
+<td>Description</td>
 </tr>
 
 <tr>
 <td>windows</td>
-<td>__WIN32__) || defined(__WIN64__</td>
+<td>Windows OS, both 32 and 64-bit</td>
 </tr>
 
 <tr>
 <td>linux</td>
-<td>__linux__</td>
+<td>Linux</td>
 </tr>
 
 <tr>
 <td>solaris</td>
-<td>__sun</td>
+<td>Solaris</td>
 </tr>
 
 <tr>
 <td>unix</td>
-<td>__unix__</td>
+<td>Unices (Apple products do not define this)</td>
 </tr>
 
 <tr>
 <td>beos</td>
-<td>__BEOS__</td>
+<td>BeOS</td>
 </tr>
 
 <tr>
 <td>haiku</td>
-<td>__HAIKU__</td>
+<td>Haiku (BeOS-like)</td>
 </tr>
 
 <tr>
 <td>apple</td>
-<td>__APPLE__</td>
+<td>All things apple: iOS, OSX</td>
+</tr>
+
+<tr>
+<td><em>ios</em></td>
+<td>iOS: iPhone, iPad</td>
+</tr>
+
+<tr>
+<td><em>ios_simulator</em></td>
+<td>iOS compiled for the ios simulator</td>
+</tr>
+
+<tr>
+<td><em>osx</em></td>
+<td>Mac OSX (consider using <tt>apple</tt> instead)</td>
 </tr>
 
 <tr>
 <td>freebsd</td>
-<td>__FreeBSD__</td>
+<td>FreeBSD</td>
 </tr>
 
 <tr>
 <td>openbsd</td>
-<td>__OpenBSD__</td>
+<td>OpenBSD</td>
 </tr>
 
 <tr>
 <td>netbsd</td>
-<td>__NetBSD__</td>
+<td>NetBSD</td>
 </tr>
 
 <tr>
 <td>dragonfly</td>
-<td>__DragonFly__</td>
+<td>DragonFly BSD</td>
+</tr>
+
+<tr>
+<td>cygwin</td>
+<td>Cygwin toolchain</td>
+</tr>
+
+<tr>
+<td>mingw</td>
+<td>MinGW 32 or 64-bit toolchain</td>
+</tr>
+
+<tr>
+<td>mingw64</td>
+<td>MinGW 64-bit toolchain</td>
 </tr>
 
 <tr>
 <td>gnuc</td>
-<td>__GNUC__</td>
+<td>GCC (GNU C)</td>
 </tr>
 
 <tr>
-<td>arm</td>
-<td>__arm__</td>
-</tr>
-
-<tr>
-<td>i386</td>
-<td>__i386__</td>
-</tr>
-
-<tr>
-<td>x86</td>
-<td>__X86__</td>
-</tr>
-
-<tr>
-<td>x86_64</td>
-<td>__x86_64__</td>
-</tr>
-
-<tr>
-<td>ppc</td>
-<td>__ppc__</td>
-</tr>
-
-<tr>
-<td>ppc64</td>
-<td>__ppc64__</td>
-</tr>
-
-<tr>
-<td>64</td>
-<td>__x86_64__) || defined(__ppc64__</td>
-</tr>
-
-<tr>
-<td>gc</td>
-<td>__OOC_USE_GC__</td>
+<td>msvc</td>
+<td>Microsoft Visual C++</td>
 </tr>
 
 <tr>
 <td>android</td>
-<td>__ANDROID__</td>
+<td>Android toolchain</td>
+</tr>
+
+<tr>
+<td>arm</td>
+<td>ARM processor architecture</td>
+</tr>
+
+<tr>
+<td>i386</td>
+<td>Intel x86 architecture (defined by GNU C)</td>
+</tr>
+
+<tr>
+<td>x86</td>
+<td>Intel x86 architecture (defined by MinGW)</td>
+</tr>
+
+<tr>
+<td>x86_64</td>
+<td>AMD64 architecture</td>
+</tr>
+
+<tr>
+<td>ppc</td>
+<td>PPC architecture</td>
+</tr>
+
+<tr>
+<td>ppc64</td>
+<td>PPC 64-bit architecture</td>
+</tr>
+
+<tr>
+<td>64</td>
+<td>64-bit processor architecture and toolchain</td>
+</tr>
+
+<tr>
+<td>gc</td>
+<td>Garbage Collector activated on compilation</td>
 </tr>
 
 </tbody>
 </table>
+
+The specs in _italics_ are "complex" specs - they can't be in a composed version
+expression, e.g. this is invalid:
+
+    #!ooc
+    version (64 && osx) {
+        // code here
+    }
+
+Consider doing this instead:
+
+    #!ooc
+    version (64) {
+        version (osx) {
+            // code here
+        }
+    }
+
+The reason for this is that `osx`, `ios`, and `ios_simulator` are not simple `#ifdef`s
+in the generated code, but they require an include and an equality test.
 
 ## Line continuations
 
