@@ -157,6 +157,8 @@ at the [Perl documentation](http://perldoc.perl.org/perlre.html).
 
 ## JSON
 
+### Basic reading and writing
+
 The `text/json/` package contains a JSON parser and generator, written in ooc
 without external dependencies, which is able to deal with basic JSON. However,
 if you care about speed or compliance (especially when dealing with numbers),
@@ -208,3 +210,38 @@ Here are some examples:
 When dealing with the `HashBag` class, you should take a look at its
 [getPath](/docs/sdk/structs/#hashbag) function, which will save you
 a lot of typing.
+
+### A JSON generation DSL
+
+If you find yourself generating a lot of JSON, you might find
+the `HashBag`/`Bag` objects create a lot of syntactic noise. For this
+reason, the SDK contains another convenience module implementing
+a small DSL for JSON generation.
+
+    #!ooc
+    // Let's import the module into a namespace, since `make`
+    // is a bit ambiguous.
+    import text/json/DSL into JSON
+
+    JSON make(|j|
+	j object(
+	    "some-key",
+		"some-value",
+	    "here comes a list",
+		j array(
+		    1, 2, "three", 4
+		),
+	    "and a nested object",
+		j object(
+		    "true",
+			true
+		)
+        )
+    ) println()
+
+`make` creates a helper object with `object` and `array` functions and passes
+it to the function you provide; using a closure is the most convenient way here.
+You can use `object` to create JSON objects, passing as many key-value pairs
+as you want, and `array` for JSON arrays.
+
+When it's done, it returns the JSON data as a string.
