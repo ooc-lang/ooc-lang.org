@@ -210,20 +210,18 @@ The `getPath` method allows one to retrieve an element of a tree of `HashBag`s a
 Let's say the original JSON looked like this:
 
     #!json
-    "elements": {
-      "house": {}
+    {"elements": {
+      "house": {},
       "car": {
         "wheels": [
-          { "diameter" => 2.23 }
-        ]
-      }
-    }
+          { "diameter": 2 }
+        ]}}}
 
 One could use the following code to retrieve the diameter of the first wheel:
 
     #!ooc
     data: HashBag = // read from JSON
-    diameter := data getPath("elements/car/wheels#0", Float)
+    diameter := data getPath("elements/car/wheels#0/diameter", Int)
 
 ## Stacks
 

@@ -154,3 +154,57 @@ expression pattern, passing some options as a bitmask if you want to:
 
 For more information about the Perl regular expression syntax, take a look
 at the [Perl documentation](http://perldoc.perl.org/perlre.html).
+
+## JSON
+
+The `text/json/` package contains a JSON parser and generator, written in ooc
+without external dependencies, which is able to deal with basic JSON. However,
+if you care about speed or compliance (especially when dealing with numbers),
+you should check out [ooc-yaml](https://github.com/nddrylliog/ooc-yaml).
+
+The JSON classes operate on nested [HashBags and Bags](/docs/sdk/structs/#bag-variants),
+so if you parse JSON, you get some (Hash)Bags, and if you want to generate JSON, you need
+to pass the data as (Hash)Bags.
+
+To parse or generate JSON, you can just use the convenience `text/json` module.
+Every function exists in two flavours: Normally, you need to pass the class
+of your expected base value. So, for example, if you want to parse JSON like that:
+
+    #!json
+    ["Hi", "World"]
+
+You need to pass `Bag` as the base value class. However, since most of the time
+you will parse JSON objects that will represented by a `HashBag`, `HashBag` is
+used by default if you do not pass a class explicitly.
+
+Here are some examples:
+
+    #!ooc
+    import text/json
+    import structs/HashBag
+
+    // if you have a `Reader` (to read directly from a file, for example):
+    import io/FileReader
+    myObject := JSON parse(FileReader new("package.json"))
+
+    // ... and if your base value is not a JSON object:
+    import structs/Bag
+    myArray := JSON parse(FileReader new("myarray.json"), Bag)
+
+    // reading directly from strings is also supported:
+    JSON parse("{\"hello\": \"world\"}")
+    JSON parse("\"just a string\"", String)
+
+    // and to generate JSON, there is:
+    myBag := HashBag new()
+    myBag put("integer", 1234) \
+	 .put("string", "Yes")
+
+    import io/FileWriter
+    JSON generate(FileWriter new("output.json"), myBag)
+
+    myJSONString := JSON generateString(myBag)
+
+When dealing with the `HashBag` class, you should take a look at its
+[getPath](/docs/sdk/structs/#hashbag) function, which will save you
+a lot of typing.
