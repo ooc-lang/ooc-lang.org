@@ -70,7 +70,7 @@ each returning an `ArrayList`:
 
     // split until a specific number of tokens is reached.
     // This will produce an ArrayList like
-    //	["A", "simple and stupid|example"]
+    //    ["A", "simple and stupid|example"]
     "A|simple and stupid|example" split('|', 2)
 
     // There is also a function to split at delimiters longer
@@ -91,7 +91,7 @@ uses a hashmap to access items by value:
 
     values := HashMap<String, String> new()
     values put("day", "Saturday") \
-	  .put("weather", "cloudy")
+          .put("weather", "cloudy")
 
     "Hi! Today's {{day}}, and it is a pretty {{  weather   }} {{ day }}!" formatTemplate(values) println()
 
@@ -149,7 +149,7 @@ expression pattern, passing some options as a bitmask if you want to:
     // You can also iterate over the matches. This will include
     // group 0 (the whole string), though.
     for(group in someDate) {
-	// `group` is now a String.
+        // `group` is now a String.
     }
 
 For more information about the Perl regular expression syntax, take a look
@@ -200,7 +200,7 @@ Here are some examples:
     // and to generate JSON, there is:
     myBag := HashBag new()
     myBag put("integer", 1234) \
-	 .put("string", "Yes")
+         .put("string", "Yes")
 
     import io/FileWriter
     JSON generate(FileWriter new("output.json"), myBag)
@@ -223,21 +223,21 @@ a small DSL for JSON generation.
     // is a bit ambiguous.
     import text/json/DSL into JSON
 
-    JSON make(|j|
-	j object(
-	    "some-key",
-		"some-value",
-	    "here comes a list",
-		j array(
-		    1, 2, "three", 4
-		),
-	    "and a nested object",
-		j object(
-		    "true",
-			true
-		)
+    data := JSON make(|j|
+        j object(
+            "some-key",
+                "some-value",
+            "here comes a list",
+                j array(
+                    1, 2, "three", 4
+                ),
+            "and a nested object",
+                j object(
+                    "true", true
+                )
         )
-    ) println()
+    )
+    data println()
 
 `make` creates a helper object with `object` and `array` functions and passes
 it to the function you provide; using a closure is the most convenient way here.
