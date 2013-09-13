@@ -14,23 +14,112 @@ and the next few sections explain exactly how.
 
 ## Debug symbols
 
-To include debug symbols, use the `-g` option:
+By default, rock compiles in the debug profile. The corresponding command line
+option is `-pg`.
 
-    rock -g
-
-Not only will this pass the corresponding option to the C compiler used (gcc, clang, etc.)
-but it will also:
+Not only will this pass the corresponding option to the C compiler used (gcc,
+clang, etc.) but it will also:
 
   * Add `#line` directives for debuggers to map back to .ooc files
   * Keep produced C files around for further inspection.
+  * On Linux, it'll add -rdynamic so that all symbols are exported
+  * On OSX, it'll run dsymutil so that a `.dSYM` archive will be produced,
+  containing debug symbols.
 
-Note that it might be useful to throw in an optimization flag as well. C compilers tend to
-do weird things with code when optimizing, and debuggers don't always like that. So, in
-edge cases, the above should really be more something like:
+When releasing a production build of your software, use the release profile
+instead, using:
 
-    rock -g +-O0
+    rock -pr
 
-(Using the `+` syntax to directly pass options to the compiler)
+This will omit debug symbols.
+
+## Fancy backtraces
+
+While the next sections cover using a debugger, which is a prerequisite for
+pretty much all hardcore problem-solving sections, there is a way to get
+information about program crashes without using a debugger.
+
+The fancy-backtrace rock extension produces output like this when a program crashes:
+
+    [OutOfBoundsException in ArrayList]: Trying to access an element at offset 0, but size is only 0!
+    [fancy backtrace]
+    0     fancy_backtrace.c                                        (from C:\msys64\home\amwenger\Dev\rock\bin\fancy_backtrace.DLL)
+    1     BacktraceHandler backtrace_impl()  in lang/Backtrace     (at C:/msys64/home/amwenger/Dev/rock/sdk/lang/Backtrace.ooc:50)
+    2     BacktraceHandler backtrace()       in lang/Backtrace     (at C:/msys64/home/amwenger/Dev/rock/sdk/lang/Backtrace.ooc:243)
+    3     Exception addBacktrace_impl()      in lang/Exception     (at C:/msys64/home/amwenger/Dev/rock/sdk/lang/Exception.ooc:108)
+    4     Exception addBacktrace()           in lang/Exception     (at C:/msys64/home/amwenger/Dev/rock/sdk/lang/Exception.ooc:212)
+    5     Exception throw_impl()             in lang/Exception     (at C:/msys64/home/amwenger/Dev/rock/sdk/lang/Exception.ooc:177)
+    6     Exception throw()                  in lang/Exception     (at C:/msys64/home/amwenger/Dev/rock/sdk/lang/Exception.ooc:232)
+    7     ArrayList get_impl()               in structs/ArrayList  (at C:/msys64/home/amwenger/Dev/rock/sdk/structs/ArrayList.ooc:82)
+    8     ArrayList get()                    in structs/ArrayList  (at C:/msys64/home/amwenger/Dev/rock/sdk/structs/ArrayList.ooc:40)
+    9     __OP_IDX_ArrayList_Int__T()        in structs/ArrayList  (at C:/msys64/home/amwenger/Dev/rock/sdk/structs/ArrayList.ooc:290)
+    10    foo()                              in crash              (at C:/msys64/home/amwenger/Dev/rock/test/sdk/lang/crash.ooc:32)
+    11    bar()                              in crash              (at C:/msys64/home/amwenger/Dev/rock/test/sdk/lang/crash.ooc:41)
+    12    App runToo_impl()                  in crash              (at C:/msys64/home/amwenger/Dev/rock/test/sdk/lang/crash.ooc:72)
+    13    App runToo()                       in crash              (at C:/msys64/home/amwenger/Dev/rock/test/sdk/lang/crash.ooc:84)
+    14    __crash_closure403()               in crash              (at C:/msys64/home/amwenger/Dev/rock/test/sdk/lang/crash.ooc:67)
+    15    __crash_closure403_thunk()         in crash              (at C:/msys64/home/amwenger/Dev/rock/test/sdk/lang/crash.ooc:66)
+    16    loop()                             in lang/Abstractions  (at C:/msys64/home/amwenger/Dev/rock/sdk/lang/Abstractions.ooc:2)
+    17    App run_impl()                     in crash              (at C:/msys64/home/amwenger/Dev/rock/test/sdk/lang/crash.ooc:65)
+    18    App run()                          in crash              (at C:/msys64/home/amwenger/Dev/rock/test/sdk/lang/crash.ooc:80)
+    19    main()                             in                    (at C:/msys64/home/amwenger/Dev/rock/test/sdk/lang/crash.ooc:1)
+    20    crtexe.c                                                 (from C:\msys64\home\amwenger\Dev\rock\test\sdk\lang\crash.exe)
+    21    crtexe.c                                                 (from C:\msys64\home\amwenger\Dev\rock\test\sdk\lang\crash.exe)
+    22    BaseThreadInitThunk                                      (from C:\Windows\system32\kernel32.dll)
+    23    RtlUserThreadStart                                       (from C:\Windows\SYSTEM32\ntdll.dll)
+
+In the case above, 
+
+Fancy backtraces works on Windows, Linux, and OSX, on both 32 and 64-bit machines.
+
+To use it, simply go in the rock directory and do:
+
+    make extensions
+
+A few dependencies might be needed, such as `binutils-dev` and `zlibg1-dev` on
+Debian, or a few brew formulas on OSX.
+
+### Fancy backtrace principle
+
+Basically, whenever an exception is thrown, a backtrace is captured. It
+contains a list of frames, e.g. the addresses of the various function calls (as
+can be seen above).
+
+If an Exception isn't caught, the program will abort, but before it does, the
+backtrace captured when the exception was thrown is formatted nicely and
+printed out to the standard error stream.
+
+Similarly, when the program receives a signal (such as SIGSEGV), a backtrace is
+printed to help the developer know when things were wrong.
+
+Since fancy-backtrace has more dependencies than rock itself, it's a little bit
+harder to build, and that's why it exists as a dynamic library (a .dll file on
+Windows, .dylib on OSX, and .so on Linux).
+
+When a program compiled in the debug profile starts up, it attempts to load the
+library. If it succeeds, it will use it to display friendly stack traces. If it
+doesn't, it will fall back to the execinfo interface (which displays only
+function names, not source files or line numbers), or to... nothing, on
+Windows.
+
+By default, the fancy_backtrace.{dll,so,dylib} file is copied along to the rock
+binary, in `${ROCK_DIST}/bin`. An ooc executable will first look in its own
+directory (useful if the application is distributed on a system that doesn't
+have rock), and will then search in the directory where the rock executable
+resides (useful on a developer system).
+
+### Fancy backtrace configuration
+
+The default setting is to display something as helpful as possible. However, if
+one wants unformatted backtraces, one may define the `RAW_BACKTRACE`
+environment variable:
+
+    RAW_BACKTRACE=1 ./myprogram
+
+To disable the usage of fancy-backtrace altogether, one may use the
+`NO_FANCY_BACKTRACE` environment variable:
+
+    NO_FANCY_BACKTRACE=1 ./myprogram
 
 ## Crash course in gdb
 
@@ -41,6 +130,7 @@ GDB, the [GNU Debugger][gdb], is the canonical tool to debug C applications comp
 
 For example, writing this in `dog.ooc`
 
+    #!ooc
     Dog: class {
         shout: func {
             raise("Woops, not implemented yet")
@@ -55,7 +145,7 @@ For example, writing this in `dog.ooc`
         Dog new() shout()
     }
 
-Compiling with `rock -g` gives an executable, `dog`, and a folder with C files.
+Compiling with `rock -pg` gives an executable, `dog`, and a folder with C files.
 
 ### Running
 
@@ -93,7 +183,7 @@ function on OSX (where this doc was written). How about a nice backtrace instead
     #5  0x0000000100000e9b in dog__Dog_shout_impl (this=0x100238ff0) at dog.c:3
     #6  0x0000000100000ef0 in dog__Dog_shout (this=0x100238ff0) at dog.ooc:11
     #7  0x0000000100001131 in dog__work () at dog.ooc:12
-    #8  0x0000000100001102 in main (__argc2=1, __argv3=0x7fff5fbff230) at dog.ooc:8 
+    #8  0x0000000100001102 in main (__argc2=1, __argv3=0x7fff5fbff230) at dog.ooc:8
 
 We have from left to right - the frame number, the address of the function (we
 can ignore), the name of the function, then the arguments and their values, and
@@ -314,7 +404,7 @@ launched somewhere else? Let's try with this program, `sleep.ooc`:
         "Hey!" println()
     }
 
-Compiling it with `rock -g` and running it with `./sleep` prints `Hey!` every second, as expected.
+Compiling it with `rock -pg` and running it with `./sleep` prints `Hey!` every second, as expected.
 
 To attach to this process, we need to find out its process ID. We can either use the `ps` command line
 utility, or we can interrupt its execution with `Ctrl-Z` (in most shells, like bash, zsh, etc.). You
@@ -351,80 +441,4 @@ above. This behavior can be disabled with:
 In which case gdb will fall back to displaying C line numbers (corresponding to the files
 generated by rock). This can be useful if you suspect that rock is generating invalid code,
 or if the ooc line numbers are messed up for some reason.
-
-### Backtraces without gdb
-
-On Linux, one has the ability to print backtraces when unhandled exceptions are caught
-by the default excepiton handler, without even having to attach a debugger.
-
-To benefit from this functionality, use the `+-rdynamic` compiler flag. Using the `dog`
-program from the GDB tutorial above:
-
-    rock -g +-rdynamic dog
-
-Running it then should display something like:
-
-    $ ./dog
-    [Exception]: Woops, not implemented yet
-    [backtrace]
-    ./dog(lang_Exception__Exception_addBacktrace_impl+0x46)[0x423f6f]
-    ./dog(lang_Exception__Exception_addBacktrace+0x20)[0x424386]
-    ./dog(lang_Exception__Exception_throw_impl+0x24)[0x4242d4]
-    ./dog(lang_Exception__Exception_throw+0x23)[0x424417]
-    ./dog(lang_Exception__raise+0x20)[0x424ebb]
-    ./dog(dog__Dog_shout_impl+0x1b)[0x420021]
-    ./dog(dog__Dog_shout+0x20)[0x42005d]
-    ./dog(dog__work+0x16)[0x420227]
-    ./dog(main+0x1d)[0x42020a]
-    /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5)[0x7fa3439f4ea5]
-    ./dog[0x41ff35]
-    [1]    3775 abort      ./dog
-
-Note that line numbers are not displayed, since that would require reading debugger
-meta-data from the executable, but in theory, it could be done.
-
-Sometimes, using just that is enough to figure out where a bug comes from, especially
-if functions are short and sweet.
-
-### Windows, MinGW and MSVCRT
-
-On Windows, with MinGW-compiled programs, gdb will not necessarily break when Exceptions
-are thrown. It can help to set up a break point on `abort`.
-
-Without: 
-
-    (gdb) r
-    Starting program: C:\MinGW\msys\1.0\home\amwenger\Dev\tests\dog.exe
-    [New Thread 7064.0x1b9c]
-    [Exception]: Woops! Not implemented yet.
-     
-    This application has requested the Runtime to terminate it in an unusual way.
-    Please contact the application's support team for more information.
-    [Inferior 1 (process 7064) exited with code 03]
-
-With:
-
-    (gdb) break abort
-    Breakpoint 1 at 0x426828
-    (gdb) r
-    Starting program: C:\MinGW\msys\1.0\home\amwenger\Dev\tests\dog.exe
-    [New Thread 2884.0x1958]
-    [Exception]: Woops! Not implemented yet.
-     
-    Breakpoint 1, 0x00426828 in abort ()
-    (gdb) bt
-    #0  0x00426828 in abort ()
-    #1  0x00401957 in lang_Exception__Exception_throw_impl (this=0x6c1ac0) at C:/MinGW/msys/1.0/home/amwenger/Dev/rock/sdk/lang/Exception.ooc:205
-    #2  0x00401a23 in lang_Exception__Exception_throw (this=0x6c1ac0) at C:/MinGW/msys/1.0/home/amwenger/Dev/rock/sdk/lang/Exception.ooc:241
-    #3  0x004022a2 in lang_Exception__raise (msg=0x6c1ae0) at C:/MinGW/msys/1.0/home/amwenger/Dev/rock/sdk/lang/Exception.ooc:104
-    #4  0x004013c8 in dog__Dog_shout_impl (this=0x6c7ff8) at C:/MinGW/msys/1.0/home/amwenger/Dev/tests/dog.ooc:4
-    #5  0x004013f3 in dog__Dog_shout (this=0x6c7ff8) at C:/MinGW/msys/1.0/home/amwenger/Dev/tests/dog.ooc:12
-    #6  0x0040154a in dog__doStuff () at C:/MinGW/msys/1.0/home/amwenger/Dev/tests/dog.ooc:13
-    #7  0x00401530 in main (__argc2=1, __argv3=0x371810) at C:/MinGW/msys/1.0/home/amwenger/Dev/tests/dog.ooc:9
-
-When getting a message such as:
-
-    warning: Invalid parameter passed to C runtime function.
-
-It might help breaking on `OutputDebugStringA` to get a backtrace.
 
