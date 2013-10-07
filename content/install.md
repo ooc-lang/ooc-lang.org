@@ -94,6 +94,7 @@ If compilation went fine, you should be able to execute `./sam`. Then,
 you need to add it to your `$PATH`, just like rock, by adding this line
 to your `~/.bashrc` or `~/.zshrc`:
 
+    #!bash
     export PATH="$PATH:$OOC_LIBS/sam"
 
 Running `sam` should now print its version, along with a little help text.
