@@ -160,5 +160,84 @@ Inside each of these threads, though, the value is still 1 and 2 respectively.
 
 ## Mutex
 
+A mutex allows to control access to resources that are shared between threads,
+to avoid two threads modifying the same resource, which could potentially result
+in invalid state.
+
+    #!ooc
+    counter := 0
+
+    threads := ArrayList<Thread> new()
+    for (i in 0..10) {
+        threads add(Thread new(||
+            for (i in 0..1000) {
+                counter += 1   
+                Thread yield()
+            }
+        ))
+    }
+
+    for (t in threads) t start()
+    for (t in threads) t wait()
+
+    // prints counter = ???
+    "counter = %d" printfln(counter)
+
+The code above has a problem - many threads may access the counter at the same time,
+hence the resulting counter value isn't reliably 10000. In actual testing, it gave
+values sucha s 7064, 6111, 5986, etc.
+
+This happens because a thread might be reading the value of counter, then another
+thread runs and increments it, then the thread who read the value sets the counter
+to the value it reads plus one, resulting in "lost iterations".
+
+To alleviate that problem, we can use a mutex:
+
+    #!ooc
+    counter := 0
+
+    mutex := Mutex new()
+
+    threads := ArrayList<Thread> new()
+    for (i in 0..10) {
+        threads add(Thread new(||
+            for (i in 0..1000) {
+                mutex lock()
+                counter += 1   
+                mutex unlock()
+                Thread yield()
+            }
+        ))
+    }
+
+    for (t in threads) t start()
+    for (t in threads) t wait()
+
+    // prints counter = ???
+    "counter = %d" printfln(counter)
+
+Here, we have protected the counter incrementation with `mutex lock()` and
+`mutex unlock()` calls. This is known as a critical section. In there, only one
+thread can execute at a time - the other threads will block on the `lock` call,
+waiting to be able to acquire it exclusively.
+
+Instead of using `lock` and `unlock` by hand, one might want to use the `with`
+method, that takes a block:
+
+    #!ooc
+    for (i in 0..1000) {
+        mutex with(||
+            counter += 1
+        )
+    }
+
+With any of these last two versions, the counter is reliably set to 10000
+at the end of every run.
+
+For more information about this problem, read the [Mutual exclusion][mutuwiki]
+Wikipedia page.
+
+[mutuwiki]: http://en.wikipedia.org/wiki/Mutual_exclusion
+
 ## RecursiveMutex
 
