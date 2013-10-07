@@ -241,3 +241,37 @@ Wikipedia page.
 
 ## RecursiveMutex
 
+With a regular mutex, locking multiple times from the same thread results in
+undefined behaviour on some platforms (e.g. pthreads).
+
+A recursive mutex, on the other hand, can be locked multiple times, as long
+as it's unlocked a corresponding number of times, all by the same thread.
+
+A trivial (non-useful) test might look like:
+
+    #!ooc
+    threads := ArrayList<Thread> new()
+
+    mutex := RecursiveMutex new()
+    counter := 0
+
+    for (i in 0..42) {
+        threads add(Thread new(||
+            for (i in 0..10) mutex lock()
+            counter += 1
+            for (i in 0..10) mutex unlock()
+        ))
+    }
+
+    for (t in threads) t start()
+    for (t in threads) t wait()
+
+    // prints counter = 42
+    "counter = %d" printfln(counter)
+
+This program correctly prints `counter = 42` at the end. If we weren't using
+a recursive mutex, more funky behaviour could happen. For example, on OSX, the
+program enters an infinite waiting loop, as we are trying to lock an already
+locked non-recursive mutex acquired by the current thread, resulting in a
+deadlock.
+
