@@ -125,3 +125,74 @@ To get the absolute value of a number, use `abs()`:
 
 ## Random
 
+By importing `math/Random`, one can generate random numbers.
+
+**Disclaimer: neither the libc random number generator or the fast prng
+exposed by math/Random are suitable for cryptographic usage. Find a library
+that does it right, this was not planned for it.**
+
+When the module is loaded (probably at program start-up), the libc random
+number generator will be seeded with the current time in microseconds.
+
+Then, various functions can be used to get random numbers.
+
+### libc generator
+
+To get any number between `INT_MIN` and `INT_MAX`, call:
+
+    #!ooc
+    number := Random random()
+
+To get any number within a range, use either:
+
+    #!ooc
+    // gives a number between 0 (included) and 10 (included)
+    number := Random randInt(0, 10)
+
+    // gives a number between 0 (included) and 9 (included)
+    number = Random randRange(0, 10)
+
+Those both have variants to get a number in a range, excluding any
+number already contained in a list:
+
+    #!ooc
+    // get 10 unique numbers between 0 and 100
+    list := ArrayList<Int> new()
+
+    10 times(||
+        list add(Random randInt(0, 100, list))
+    )
+
+To pick out a random element ouf ot a list, use `choice`:
+
+    #!ooc
+    // get one of those 10 unique numbers we just generated:
+    num := Random choice(list)
+
+Note that `choice` is generic, so it will work with lists of any
+type of element.
+
+### fast prng
+
+Most of the methods above have a `fast` variant, working from a PRNG ([pseudorandom
+number generator][prng-wiki]) coded directly into the Random class.
+
+[prng-wiki]: http://en.wikipedia.org/wiki/Pseudorandom_number_generator
+
+    #!ooc
+    // all these are documented above, they work in a similar fashion
+    Random fastRandom()
+
+    Random fastRandInt(0, 10)
+    Random fastRandRange(0, 10)
+
+    Random fastRandInt(0, 10, list)
+    Random fastRandRange(0, 10, list)
+
+    Random fastChoice(list)
+
+The `fast` variants are meant to be faster, as the name implies, but they're even
+less guaranteed to have good random qualities - the numbers it generates might be
+less even / repeat more easily.
+
+
