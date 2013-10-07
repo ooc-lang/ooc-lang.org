@@ -133,6 +133,31 @@ predict exactly what will happen, so seeing `AABCBC`, `ABABCC`, and even
 
 ## ThreadLocal
 
+By default, global variables are shared among all threads. To make a global
+that is specific to each thread, use ThreadLocal:
+
+    #!ooc
+    val := ThreadLocal<Int> new(42)
+
+    threads := ArrayList<Thread> new()
+    for (i in 1..3) {
+        threads add(Thread new(||
+            val set(i) 
+        ))
+    }
+
+    for (t in threads) t start()
+    for (t in threads) t wait()
+
+    // prints val = 42
+    "val = %d" printfln(val get())
+
+In this case, val is initialized from the main application thread, then set by
+three other OS threads, and yet the value is still 42 at the end of the program,
+in the main thread.
+
+Inside each of these threads, though, the value is still 1 and 2 respectively.
+
 ## Mutex
 
 ## RecursiveMutex
