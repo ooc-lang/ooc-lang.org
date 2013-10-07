@@ -185,7 +185,7 @@ in invalid state.
 
 The code above has a problem - many threads may access the counter at the same time,
 hence the resulting counter value isn't reliably 10000. In actual testing, it gave
-values sucha s 7064, 6111, 5986, etc.
+values such as 7064, 6111, 5986, etc.
 
 This happens because a thread might be reading the value of counter, then another
 thread runs and increments it, then the thread who read the value sets the counter
