@@ -33,6 +33,8 @@ The os packages contains various modules pertaining to Operating System function
 
  2. [Env](/docs/sdk/os/env/), to deal with environment variables
 
+ 3. [ShellUtils](/docs/sdk/os/shellutils/), used mostly to find executables
+
  3. [Time](/docs/sdk/os/time/), to get the current time and date, and sleep
 
 
