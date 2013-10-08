@@ -11,16 +11,42 @@ read and write file descriptors.
 The writer writes into the write file descriptor and the reader reads into the
 read file descriptor.
 
+### Reading
+
 A read call may either:
 
   * successfully read, if there's data in the pipe
   * block to wait for some more data (in blocking mode)
   * return immediately with no data (in non-blocking mode)
 
+In non-blocking mode, one has to be careful to distinguish between the 'no
+data' condition and the 'end of pipe' condition. OS pipes don't have a proper
+'eof' marker, but reading from a closed pipe will mark the Pipe class as eof
+anyway, accessible with `Pipe eof?()`.
+
+The `os/Pipe` package contains a `PipeReader` class, which extends the
+`io/Reader` class, for convenience.
+
+### Writing
+
 A write call may either:
 
   * return immediately if there's room in the pipe
-  * block to wait for some data to be read, making room to write something
+  * block to wait for some data to be read, making room to write something (in
+    blocking mode)
+  * return immediately, having written as much as it can (in non-blocking mode)
+
+The `os/Pipe` package contains a `PipeWriter` class, which extends the
+`io/Writer` class, for convenience.
+
+### Buffering considerations
+
+Note that a pipe's user has to do its own buffering when writing: in blocking
+mode, writing something too large will hang forever, and in non-blocking mode,
+only the part that fits will be written, leaving the rest unwritten.
+
+As a result, using a `PipeReader` or a `PipeReader` in non-blocking mode is
+unreliable.  Instead, using blocking mode inside a thread is preferrable.
 
 ## Basic usage
 
@@ -65,7 +91,9 @@ Or simply:
     #!ooc
     pipe close()
 
-## Inter-thread communication
+## Communication
+
+### Inter-thread communication
 
 Pipes can be used to communicate between threads.
 
@@ -103,14 +131,14 @@ Let's start them both:
     reader start(); writer start()
     reader wait();  writer wait()
 
-## Inter-process communication
+### Inter-process communication
 
 Similarly, pipes can be (and are mostly) used to communicate with other
 processes. This is covered in the [Process][process] section.
 
 [process]: /docs/sdk/os/process/
 
-## Non-blocking I/O
+### Non-blocking I/O
 
 A pipe can be set to non-blocking mode to use non-blocking read operations.
 This is used in the streaming example in the [Process][process] section.
