@@ -132,6 +132,7 @@ should display star wars scene in ASCII art:
     p := Process new(["nc", "towel.blinkenlights.nl", "23"])
 
     out := Pipe new()
+    out setNonBlocking()
     p setStdout(out)
 
     p executeNoWait()
