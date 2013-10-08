@@ -3,7 +3,7 @@ title: JobPool
 has_toc: true
 ---
 
-## The os/Jobpool module
+## The os/JobPool module
 
 JobPool is useful when several background tasks have to be launched in
 parallel. It allows to control how many tasks are run in parallel, and to wait
