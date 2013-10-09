@@ -28,4 +28,4 @@ Here's how we handle branches:
   * The `master` branch contains the latest stable release - important fixes are sometimes backported there.
   * Upcoming releases leave in their own branch. For rock 0.9.7, that would be the branch '97x'.
 
-If you want to benefit from the latest features and bugs, feel free to follow these instructions to [live on the edge](/edge/).
+If you want to benefit from the latest features and bugs, feel free to follow these instructions to [live on the edge](/install/#installing-from-git).
