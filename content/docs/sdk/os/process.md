@@ -31,6 +31,7 @@ the standard output of the process as a string
 
 Or getErrOutput to get the standard error output:
 
+    #!ooc
     p := Process new(["cat", "/etc/hosts"])
     err := p getErrOutput()
     // err is empty
