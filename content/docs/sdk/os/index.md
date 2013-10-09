@@ -14,7 +14,7 @@ The os packages contains various modules pertaining to Operating System function
 
  2. [JobPool](/docs/sdk/os/jobpool/), to easily control a pool of child processes
 
- 3. [Coro](/docs/sdk/os/coro/), which provides a basic coroutine and channels implementation.
+ 3. [Coro](/docs/sdk/os/coro/), which provides a basic coroutine implementation
 
 ### I/O
 
@@ -25,6 +25,8 @@ The os packages contains various modules pertaining to Operating System function
  3. [Dynlib](/docs/sdk/os/dynlib/), which deals with dynamic library loading
 
  4. [mmap](/docs/sdk/os/mmap/), which exposes memory mapping capabilities
+
+ 5. [Channel](/docs/sdk/os/channel/), which implements channels
 
 ### System
 
