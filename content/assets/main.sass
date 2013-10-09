@@ -87,18 +87,18 @@ code, kbd
   font-size: 14px
 
 pre
-  border: 1px solid #C5C0A4
+  $pre-border: #c5c0a4
+  border: 1px solid $pre-border
+  border-left: 4px solid $pre-border
+
   background-color: #F8F8F8
-  padding: 8px
+  padding: 3px 6px 6px 8px
 
   overflow-x: auto
 
   code, kbd, span
     font-family: $mono-family
     font-size: 13px
-
-  kbd
-    font-weight: bold
 
 header
   background: $header-background
@@ -340,16 +340,18 @@ header
         border-bottom: dotted 1px black
       p
         margin: 20px 0
-        font-size: 15px
-        line-height: 22px
+        font-size: 1em
+        line-height: 1.6em
 
       p code, dd code, ul li code
-        font-weight: bold
-        background: #3F522C
+        font-weight: normal
+        background: #DCEEC8
+        border-radius: 2px
+        color: #4C7524
+        font-size: 0.85em
+        border: 1px solid rgb(129, 223, 99)
         padding: 1px 3px
-        border-radius: 4px
-        color: #DDE4CE
-        font-size: 12px
+        margin: 1px 2px
       ul, ol
         margin: 20px 30px
       li
