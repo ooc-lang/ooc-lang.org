@@ -30,7 +30,7 @@ Here's a list of sections of the language documentation:
  6. The [Classes](/docs/lang/classes/) chapter is here to help you realize
     that ooc classes are a lot like Java classes, except when they are not.
     Constructors, inheritance, abstract methods, initializers, and even
-    interfaces have found they way in here.
+    interfaces have found their way in here.
 
  7. The [Operators](/docs/lang/operators/) chapter lists various mathematic
     and logic operators, their priorities, how to overload them, etc.
