@@ -33,7 +33,7 @@ rock is provided by [winbrew][wb]:
     #!bash
     brew install rock
 
-Or, if you prefer, you can proceed to a [manual installation](#manual-installation).
+Or, if you prefer, you can proceed to a [git installation](#installing-from-git).
 
 [mingw]: http://mingw.org/
 [wb]: https://github.com/nddrylliog/winbrew
