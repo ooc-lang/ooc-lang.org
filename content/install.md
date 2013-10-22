@@ -20,7 +20,7 @@ to work, carry on to the [post-install instructions](#post-install-instructions)
 ### Linux
 
 Depending on your distribution, rock might be available via your package
-manager. However, a [manual installation](#manual-installation) is recommended
+manager. However, [installing from git](#installing-from-git) is recommended
 to get the latest version.
 
 ### Windows
