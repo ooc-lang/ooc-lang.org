@@ -100,7 +100,12 @@ The ternary operator is `?:` as in `condition ? ifTrue : ifFalse`.
 The assignment operator is `=`, the following variants exist:
 `+=`, `-=`, `*=`, `**=`, `/=`, `>>=`, `<<=`, `^=`, `|=`, `&=`.
 
-The declare-assignment operator is `:=`
+The declare-assignment operator is `:=`. And the declare-property-assignment
+operator is `::=`. For more details on these, see the [Variables][vars] and
+[Properties][props] pages.
+
+[vars]: /docs/lang/values/#variables
+[props]: /docs/lang/classes/#properties
 
 ## Double arrow
 

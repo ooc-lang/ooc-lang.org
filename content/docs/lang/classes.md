@@ -95,9 +95,27 @@ the right-hand-side value:
 
 ### Properties
 
-Instead of plain, simple members, one can also define properties
-for classes - that is, `virtual` members that exist as read-only,
-write-only, or read-write behind getters and setters.
+The shortest and sweetest way to define a property is to use the `::=` operator:
+
+    #!ooc
+    Rectangle: class {
+      width, height: Int
+      area ::= width * height
+    }
+
+Contrary to a variable declaration, the value of `area` will be
+recomputed every time it is being accessed. Contrary to a function
+call, one does not need parenthesis to call its getter, nor can it
+pass any argument.
+
+Properties are mostly useful as shorthands for an expression that
+is often computed, but that would be overkill as a method.
+
+In the technical jargon, we say that properties are, `virtual`
+members that exist as read-only, write-only, or read-write behind
+getters and setters.
+
+Here's an example of long-form, read-only property:
 
     #!ooc
     Person: class {
@@ -110,8 +128,11 @@ write-only, or read-write behind getters and setters.
       }
     }
 
-A read-only property is one that only has a getter. Similarly,
-a write-only property is one that only has a setter.
+Note that when specifying a getter, one does not need a return type,
+as it is the type of the property itself.
+
+Similarly, when specifying a setter, one only needs an argument name
+not its type:
 
     #!ooc
     Person: class {
@@ -126,15 +147,22 @@ a write-only property is one that only has a setter.
       }
     }
 
-Note that arguments in a setter's definition are only names, not types.
-The type of the argument is inferred from the type of the property itself.
-
 Empty getters and setters are valid as well, for a simple read-write property:
 
     #!ooc
     Person: class {
       name: String { get set }
     }
+
+The advantage is the following - since a property is only accessed via its
+getters and setters, which are methods, changing the structure of the `Person`
+class will not necessarily trigger a recompile on the modules which use it,
+nor will they need to explicitly import that module, if they get a `Person` instance
+from somewhere else.
+
+This is a way to work around what is known as the [Fragile Base Class Problem](fragile).
+
+[fragile]: http://c2.com/cgi/wiki?FragileBaseClassProblem
 
 ## Methods
 
@@ -400,4 +428,17 @@ to modify the original library.
     if (-3.14 == 3.14 negated()) {
       "Everything is fine" println()
     }
+
+Virtual properties (that do not correspond to a real instance variable,
+but rather compute their value from other information everytime) can also
+be added in an `extend` block:
+
+    #!ooc
+    extend Int {
+      plusFive: This { get {
+        this + 5
+      } }
+    }
+
+See the [Properties](#properties) section for more info on properties.
 

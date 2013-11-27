@@ -206,6 +206,30 @@ the following escape codes:
     "\nnn" // character with octal value nnn
     "\xhh" // character with hexadecimal value hh
 
+### String interpolation
+
+ooc's string interpolation syntax is inspired by Ruby's:
+
+    #!ooc
+    "Hello, my name is #{name} and I am #{age} years old." println()
+
+Numeric and stringy types are handled correctly by interpolated strings. For
+all other types, a `toString()` call is added. Object types that do not have
+a `toString()` method, when used in an interpolated string, will trigger a
+compile error.
+
+### Raw strings
+
+A raw string literal is enclosed in double quotes and preceded by `c` without spaces,
+for example this will be of type `CString`, not `String`:
+
+    #!ooc
+    puts(c"Some like em raw.")
+
+Raw strings can be used to avoid extra allocations. One would hope that one day compilers
+would be smart enough to avoid that on their own, but in the meantime, one could roll
+their own implementations using only raw strings.
+
 ## Variables
 
 A value can also be simply a variable declaration or a variable access, for example:
