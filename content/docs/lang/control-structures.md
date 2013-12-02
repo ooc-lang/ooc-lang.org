@@ -113,4 +113,11 @@ Or more complex data structures:
 For an object to be iterable, it has to implement the
 `iterator: func <T> -> Iterator<T>` method.
 
+A variant of foreach allows one to get the index of the current element:
+
+    #!ooc
+    for ((index, element) in list) {
+        "list[%d] = %s" printfln(index, element toString())
+    }
+
 
