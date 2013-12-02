@@ -14,6 +14,9 @@ There are some tools you should know about when you start looking into ooc.
  2. [sam](/docs/tools/sam/) helps you to keep all your libraries together and up-to-date.
    It's also able to resolve dependencies without any hassle.
 
+ 3. [editors](/docs/tools/editors/) - describes how to get syntax highlighting,
+   program checking, indentation in vim, emacs, TextMate?
+
 Tools like autoconf, automake, even CMake, are irrelevant in the context of
 ooc, since rock drives the whole compilation process.
 
