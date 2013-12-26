@@ -59,7 +59,7 @@ or similar.
 ## Post-install instructions
 
 The first thing you want to do is test that rock has been installed
-correctly. Running `rock -v` should greet you with something like:
+correctly. Running `rock -V` should greet you with something like:
 
     rock 0.9.7-head codename pacino, built on 8/2/2013 1:31:24
 
