@@ -38,7 +38,7 @@ For example:
     Int: cover from int
     UInt8: cover from uint8_t
     LLong: cover from long long
-    UInt: cover from unsigne int
+    UInt: cover from unsigned int
 
 ## Members
 
