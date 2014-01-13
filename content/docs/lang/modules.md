@@ -43,6 +43,11 @@ syntax:
 
     #!ooc
     import os/[Process, Terminal, Env]
+    
+By default, symbols imported another module are available in the global scope.  To import the symbols into a namespace, use `into`:
+
+    #!ooc
+    import czmq/extras/PipeSink into PipeSink
 
 ## Non-modules
 
