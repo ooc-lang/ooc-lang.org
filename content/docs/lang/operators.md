@@ -127,5 +127,5 @@ the type declaration isn't explicitly imported:
     Vec2: class {
       // other stuff
 
-      operator + (v: This) -> This { add(this) }
+      operator + (v: This) -> This { add(v) }
     }
