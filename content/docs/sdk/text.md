@@ -85,6 +85,8 @@ The `io/StringTemplate` module adds a lightweight `formatTemplate` string interp
 function to strings, which can be used in cases where `format` is not enough. This function
 uses a hashmap to access items by value:
 
+{{=<% %>=}}
+
     #!ooc
     import text/StringTemplate
     import structs/HashMap
@@ -94,6 +96,8 @@ uses a hashmap to access items by value:
           .put("weather", "cloudy")
 
     "Hi! Today's {{day}}, and it is a pretty {{  weather   }} {{ day }}!" formatTemplate(values) println()
+
+<%={{ }}=%>
 
 This will print:
 
