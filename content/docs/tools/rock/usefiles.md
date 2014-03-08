@@ -115,7 +115,10 @@ A list of all currently supported fields in usefiles follows.
  * `Linker` can be used to specify a `ld` replacement
  * `LibPaths` and `IncludePaths` are comma-separated lists and contain
    paths that should be added to the linker or C include paths
- * `AndroidLibs`, `AndroidIncludePahts`, `Additionals`: TODO
+ * `AndroidLibs`, `AndroidIncludePaths`: Android-specific properties that are
+   only used with the Android driver.
+ * `Additionals`: can be used to add `.c` files to be compiled along with the .ooc code.
+   Relative paths (starting with `./`) will have the .c file be copied locally.
  * `Requires` can be used to specify requirements (denoted by usefile
    names), for example for sam
  * `SourcePath` can be used to add a path to the source path
