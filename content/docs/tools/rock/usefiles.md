@@ -111,7 +111,9 @@ A list of all currently supported fields in usefiles follows.
  * `Frameworks`: OSX-only, specify Frameworks to be linked with (example: `OpenGL`)
  * `Includes` can be used to specify C headers that should be included
    (as a comma-separated list)
- * `PreMains`: ... (TODO)
+ * `PreMains`: List of compiler flags that, if specified from a .pc file or a .use file,
+   (maybe conditioned by a version block), must appear before the main compilation unit.
+   Example: `-lSDL2main` on Windows.
  * `Linker` can be used to specify a `ld` replacement
  * `LibPaths` and `IncludePaths` are comma-separated lists and contain
    paths that should be added to the linker or C include paths
