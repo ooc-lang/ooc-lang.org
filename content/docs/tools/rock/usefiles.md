@@ -108,7 +108,7 @@ A list of all currently supported fields in usefiles follows.
    that should be used instead. For example, the ooc sdl2 binding sets
    this to `sdl2-config`
  * `Libs` contains a comma-separated list of linker flags like `-lSDL2_image`
- * `Frameworks`: ... (TODO)
+ * `Frameworks`: OSX-only, specify Frameworks to be linked with (example: `OpenGL`)
  * `Includes` can be used to specify C headers that should be included
    (as a comma-separated list)
  * `PreMains`: ... (TODO)
