@@ -67,7 +67,7 @@ website was still online. It looked a little something like this:
     curl -I http://example.org/
 
 (Of course, that wasn't her website's actual URL, which we have sneakingly substituted
-with something a tad more common, in order to protect our heroin's privacy.)
+with something a tad more common, in order to protect our heroine's privacy.)
 
 Running that simple command was enough to let her know, with a simple look, whether
 the website was up and running or down in the ground — in which case prompt maintenance
