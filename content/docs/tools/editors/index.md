@@ -33,6 +33,22 @@ ooc support for emacs is provided by [ooc-mode][ooc-mode]. It provides:
 
 ooc support for TextMate is provided by [ooc.tmbundle][ooc.tmbundle].
 
+## Atom
+
+The [Atom editor][atom] can use converted TextMate bundles.
+
+You can easily convert [ooc.tmbundle][ooc.tmbundle] for your own usage, like so:
+
+    apm init --package ~/.atom/packages/language-ooc --convert https://github.com/nilium/ooc.tmbundle
+
+You might need to restart Atom to see the changes.
+
+## Brackets
+
+The [Brackets editor][brackets] now has an extension for ooc syntax highlighting.
+It can be installed from the Extensions Manager by searching for `ooc syntax`.
+The source is available [on GitHub][brackets-ooc]
+
 ## gtksourceview
 
 gtksourceview-based tools such as gedit, meld, etc. have
@@ -51,4 +67,6 @@ static website generators such as [nanoc][nanoc].
 [pygments]: http://pygments.org/ 
 [nanoc]: http://nanoc.ws/ 
 [sam]: https://github.com/nddrylliog/sam
-
+[atom]: https://atom.io/
+[brackets]: http://brackets.io/
+[brackets-ooc]: https://github.com/nddrylliog/brackets-ooc
