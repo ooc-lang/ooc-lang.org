@@ -45,7 +45,7 @@ power of x:
 `cbrt` returns the cube root of a number:
 
     #!ooc
-    8 cbrt() // 3
+    8 cbrt() // 2
 
 ### Trigonometry
 
