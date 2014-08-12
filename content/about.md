@@ -31,7 +31,7 @@ Everything turned out fine - I got the maximum grade, and immediately began
 rewriting the compiler ([implemented in Java][jooc], back then). And then I
 rewrote it again.
 
-[jooc]: https://github.com/nddrylliog/jooc-legacy
+[jooc]: https://github.com/fasterthanlime/jooc-legacy
 
 A community started to form around it. By 2011, we were overy fourty regulars
 on the IRC channel. Then, time passed, some of us got jobs, we had our share

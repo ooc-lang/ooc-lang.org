@@ -18,7 +18,7 @@ the compiler rock itself reads and handles these usefiles.
 ## Examples
 
 Let's start off with some examples. Following is the repository structure of
-[ooc-zeromq](https://github.com/nddrylliog/ooc-zeromq), a [zeromq](http://zeromq.org) binding
+[ooc-zeromq](https://github.com/fasterthanlime/ooc-zeromq), a [zeromq](http://zeromq.org) binding
 for ooc:
 
     .
@@ -71,7 +71,7 @@ As a result, you can now just import the ooc-zeromq ooc file like this:
 
 and hack away.
 
-Another simpler example is the [sam](https://github.com/nddrylliog/sam) usefile. sam is
+Another simpler example is the [sam](https://github.com/fasterthanlime/sam) usefile. sam is
 different because it compiles to an executable file:
 
     #!ooc
@@ -139,7 +139,7 @@ can be used to work with different requirements on different platforms.
 [ver]: /docs/lang/preprocessor/#version-blocks
 
 The syntax is similar to version blocks in ooc. Here is an example from
-[Paper Isaac](https://github.com/nddrylliog/isaac-paper)'s usefile:
+[Paper Isaac](https://github.com/fasterthanlime/isaac-paper)'s usefile:
 
     #!ooc
     Name: isaac

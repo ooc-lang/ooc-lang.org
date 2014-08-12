@@ -166,7 +166,7 @@ at the [Perl documentation](http://perldoc.perl.org/perlre.html).
 The `text/json/` package contains a JSON parser and generator, written in ooc
 without external dependencies, which is able to deal with basic JSON. However,
 if you care about speed or compliance (especially when dealing with numbers),
-you should check out [ooc-yaml](https://github.com/nddrylliog/ooc-yaml).
+you should check out [ooc-yaml](https://github.com/fasterthanlime/ooc-yaml).
 
 The JSON classes operate on nested [HashBags and Bags](/docs/sdk/structs/#bag-variants),
 so if you parse JSON, you get some (Hash)Bags, and if you want to generate JSON, you need

@@ -26,5 +26,5 @@ sample code which you can check out to improve your ooc-fu, third-party tools
 and more. It is also a good place to discuss development-related brainstorming,
 such as proposed features.
 
-[wiki]: https://github.com/nddrylliog/rock/wiki
+[wiki]: https://github.com/fasterthanlime/rock/wiki
 

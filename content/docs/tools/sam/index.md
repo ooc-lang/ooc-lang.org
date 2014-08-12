@@ -26,7 +26,7 @@ apart from rock, you can just go ahead and compile it [from the usefile](/docs/t
 
     #!bash
     cd $OOC_LIBS
-    git clone https://github.com/nddrylliog/sam.git
+    git clone https://github.com/fasterthanlime/sam.git
     cd sam/
     rock -v
 
@@ -47,14 +47,14 @@ package manager, it makes sense to focus on git as the primary way of code
 distribution.
 
 In general, sam consists of a simple executable and a collection of package files:
-It keeps a [grimoire](https://github.com/nddrylliog/sam/tree/master/library) of
+It keeps a [grimoire](https://github.com/fasterthanlime/sam/tree/master/library) of
 package metadata, so-called formulas.
 In a way, this is ooc's central package repository, similar to
 Python's PyPI, but much simpler. Every package is represented by a single YAML file.
 For now, the only supported (and required) option is `Origin` containing the URL
 of the corresponding git repository.
 
-For example, the [SDL2 formula](https://github.com/nddrylliog/sam/blob/master/library/sdl2.yml)
+For example, the [SDL2 formula](https://github.com/fasterthanlime/sam/blob/master/library/sdl2.yml)
 just says:
 
     Origin: https://github.com/geckojsc/ooc-sdl2.git
@@ -71,7 +71,7 @@ enables sam to identify a package by its unique name, clone the right git
 repository, find the correct [usefile](/docs/tools/rock/usefiles/) and build the package easily.
 
 Say you are building an ooc project depending on
-[deadlogger](https://github.com/nddrylliog/deadlogger)
+[deadlogger](https://github.com/fasterthanlime/deadlogger)
 and [ooc-mxml](https://github.com/geckojsc/ooc-mxml). Looking into
 the [grimoire][grimoire], you can figure out the package names and
 add the following to your usefile (called `toast.use`):
@@ -112,7 +112,7 @@ Therefore, it is important to include as many packages as possible.
 
 So, if you're developing some open source ooc project, please go ahead, clone
 the [sam repository][sam], add a formula and file a
-[pull request](https://github.com/nddrylliog/sam/pulls). Everybody wins!
+[pull request](https://github.com/fasterthanlime/sam/pulls). Everybody wins!
 
-[sam]: https://github.com/nddrylliog/sam
-[grimoire]: https://github.com/nddrylliog/sam/tree/master/library
+[sam]: https://github.com/fasterthanlime/sam
+[grimoire]: https://github.com/fasterthanlime/sam/tree/master/library

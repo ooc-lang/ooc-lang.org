@@ -92,4 +92,4 @@ generated C files.
 For a good example of relative import, and using additionals in [usefiles][usefile],
 see the [ooc-stb-image][stbi] library.
 
-[stbi]: https://github.com/nddrylliog/ooc-stb-image
+[stbi]: https://github.com/fasterthanlime/ooc-stb-image

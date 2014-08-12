@@ -199,5 +199,5 @@ pipes, both for cross-platform support, performance, and ease of use.
 [zeromq][zmq] is an interesting library and it has [ooc bindings][ooc-zeromq].
 
 [zmq]: http://zeromq.org/
-[ooc-zeromq]: https://github.com/nddrylliog/ooc-zeromq
+[ooc-zeromq]: https://github.com/fasterthanlime/ooc-zeromq
 

@@ -60,13 +60,13 @@ ooc support out of the box.
 solution for syntax highlighting used on GitHub and easy to integrate with
 static website generators such as [nanoc][nanoc].
 
-[site-repo]: https://github.com/nddrylliog/ooc-lang.org
-[ooc.vim]: https://github.com/nddrylliog/ooc.vim
+[site-repo]: https://github.com/fasterthanlime/ooc-lang.org
+[ooc.vim]: https://github.com/fasterthanlime/ooc.vim
 [ooc-mode]: https://github.com/nixeagle/ooc-mode
 [ooc.tmbundle]: https://github.com/nilium/ooc.tmbundle
 [pygments]: http://pygments.org/ 
 [nanoc]: http://nanoc.ws/ 
-[sam]: https://github.com/nddrylliog/sam
+[sam]: https://github.com/fasterthanlime/sam
 [atom]: https://atom.io/
 [brackets]: http://brackets.io/
-[brackets-ooc]: https://github.com/nddrylliog/brackets-ooc
+[brackets-ooc]: https://github.com/fasterthanlime/brackets-ooc

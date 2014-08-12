@@ -400,9 +400,9 @@ different port, and what's more, over SSL?
 No, definitely, writing an HTTP library was not part of the plan. But maybe
 there was something she could use... maybe curl existed also as a library. A
 quick search for `ooc curl` revealed the existence of
-[nddrylliog/ooc-curl][ooc-curl]. Jackpot!
+[fasterthanlime/ooc-curl][ooc-curl]. Jackpot!
 
-[ooc-curl]: https://github.com/nddrylliog/ooc-curl
+[ooc-curl]: https://github.com/fasterthanlime/ooc-curl
 
 A quick clone and.. wait. She knew better. Why not use [sam][sam] instead?
 A simple `sam clone curl` would suffice. Or, better yet, she could add the
@@ -475,7 +475,7 @@ She decided to make it easy for other people who might want to use
 the process itself was trivial. She just had to send a pull request to the
 [sam repository][sam-repo] that added a formula for her new pet project.
 
-[sam-repo]: https://github.com/nddrylliog/sam
+[sam-repo]: https://github.com/fasterthanlime/sam
 
 So, after forking sam on GitHub, changing the origin of her sam repository,
 she opened a new file in `$OOC_LIBS/sam/library/watchcorgi.yml`, and wrote:

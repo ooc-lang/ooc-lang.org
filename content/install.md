@@ -28,22 +28,16 @@ to get the latest version.
 First off, you probably want to use a gcc build from the [MinGW][mingw]
 project, as well as an MSYS environment.
 
-rock is provided by [winbrew][wb]:
-
-    #!bash
-    brew install rock
-
-Or, if you prefer, you can proceed to a [git installation](#installing-from-git).
+Then, follow the [git installation instructions](#installing-from-git).
 
 [mingw]: http://mingw.org/
-[wb]: https://github.com/nddrylliog/winbrew
 
 ## Installing from Git
 
 To install rock, simply clone the git repo and run make rescue:
 
     #!bash
-    git clone https://github.com/nddrylliog/rock.git
+    git clone https://github.com/fasterthanlime/rock.git
     cd rock
     make rescue
 
@@ -86,7 +80,7 @@ or similar.
 It is simply a must-have. Don't wait up and do the following:
 
     #!bash
-    git clone https://github.com/nddrylliog/sam.git $OOC_LIBS/sam
+    git clone https://github.com/fasterthanlime/sam.git $OOC_LIBS/sam
     cd $OOC_LIBS/sam
     rock -v
 
