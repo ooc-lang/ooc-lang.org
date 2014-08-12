@@ -6,3 +6,9 @@ guard 'nanoc' do
   watch('Rules')
   watch(%r{^(content|layouts|lib)/.*$})
 end
+
+guard 'rack', :port => 4000 do
+  watch('Gemfile.lock')
+  watch(%r{^(config|lib|app)/.*})
+end
+

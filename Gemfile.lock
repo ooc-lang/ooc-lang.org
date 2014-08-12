@@ -20,7 +20,15 @@ GEM
     guard-nanoc (1.0.1)
       guard (>= 1.8.0)
       nanoc (>= 3.6.3)
+    guard-rack (1.4.0)
+      ffi
+      guard
+      libnotify
+      rb-inotify
+      spoon
     kramdown (1.2.0)
+    libnotify (0.8.3)
+      ffi (>= 1.0.11)
     listen (2.0.0)
       celluloid (>= 0.15.1)
       rb-fsevent (>= 0.9.3)
@@ -47,8 +55,12 @@ GEM
       ffi (>= 0.5.0)
     sass (3.2.11)
     slop (3.4.6)
+    spoon (0.0.4)
+      ffi
     thor (0.18.1)
     timers (1.1.0)
+    vienna (0.4.0)
+      rack (~> 1.5)
     yajl-ruby (1.1.0)
 
 PLATFORMS
@@ -58,9 +70,11 @@ DEPENDENCIES
   adsf
   guard
   guard-nanoc
+  guard-rack
   kramdown
   mustache
   nanoc
   nokogiri
   pygments.rb
   sass
+  vienna

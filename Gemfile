@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 
 gem 'guard'
 gem 'guard-nanoc'
+gem 'guard-rack'
+gem 'vienna'
 
 gem 'kramdown'
 gem 'pygments.rb'
