@@ -33,7 +33,7 @@ Or, on one single line:
     #!ooc
     import czmq, czmq/extras/PipeSink
 
-Import paths can be relative, so when in the `czmq.ooc` module, one can import
+Import paths can be relative, so for a file in the `czmq` package, one can import
 with the full path, `czmq/extras/PipeSink`, or with the relative path, `extras/PipeSink`.
 
 Similarly, inside PipeSink, one could import another extra via `../KitchenSink`
