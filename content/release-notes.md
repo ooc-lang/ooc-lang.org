@@ -4,7 +4,51 @@ has_toc: true
 github: true
 ---
 
-## 0.9.8 (2013-11-27)
+## 0.9.9 release (2014-08-17)
+
+  - rock has been relicensed to MIT (#755)
+  - Boehm GC is now properly vendored - it lives in the `vendor` directory and is installed
+  to `vendor-prefix` - the new targets `boehmgc` and `boehmgc-clean` have been added to the
+  Makefile (#768)
+  - Changes to git workflow: the `master` branch is now bleeding-edge, `stable`
+    is stable, and version branches still exist (#794)
+  - rock now supports library precompilation - when compiling from a .use file that has
+  no Main field (#733)
+  - io/File now has `find`, `rm`, and `rm_rf` to find files, remove files, and remove files
+  and directories recursively (#734, #735, #737, #738)
+  - ArrayAccess type checking has been relaxed to better accomodate operator overloading
+  with non-numeric indices (#740)
+  - SequenceDriver fixes related to archives - better incremental (re)compilation support (#741)
+  - Don't fopen files to check if they exist anymore (performance increase + correctness) (#742)
+  - Numeric literal suffixes: `d` and `f` - no-suffix floating point literals now default
+  to Double, which is coherent with C/C++ (#749)
+  - String format now supports the `%ull` specifier (#750)
+  - C arrays declarations like `a: Int* = [1, 2, 3]` now work as expected. (#751)
+  - Passing a pointer to a generic function will now pass the `Pointer` type, not the
+  inner type (Int, etc.) (#752)
+  - .use files now support the `BinaryPath` directive for executable name (#754)
+  - .use files now support the `OocLibPaths` directive to add to the ooc libs search path (#756)
+  - Warnings about unknown version names now happen only once per unknown name (as opposed
+  to: a fuckload) (#757)
+  - Fix for each usage on `Range` instances (#759)
+  - Make `match` autocast work with primitive (#760)
+  - Namespaced import fixes (#766)
+  - Complex tuple assignment no longer clobbers left-hand-side variables (#774)
+  - Fixed too-strict operator overloading checks for unary operators (#780)
+  - Fixed code generation error with properties in covers (#781, #782)
+  - Always exit with non-zero code even in quiet mode (#786)
+  - Always print C compiler failures to stderr, even in quiet mode (#787)
+  - Add support for main: func (args: String[]) (#788)
+  - Add support for scientific notation in floating point literals (#784)
+  - Code quality fixes to the `fancy_backtrace` extension (#779)
+  - text/Shlex now has inline documentation and a test case (#785)
+  - Various Win32 Pipe & Process fixes (e.g. #791), notably, ProcessWin32 now passes
+    environment variables (#792) and redirects std{in,err,out} correctly (#793)
+  - Various luaffi backend fixes (#769, #770, #771, #772, #773)
+  - Various performance improvements in rock's compilation process (#744, #743)
+  - Various test cases added and ported to Win32 (#790)
+
+## 0.9.8 release (2013-11-27)
 
   - Added a few rock tests, they are now runnable by sam, and ran on each git push
     on Travis, see `test/README.md`.
@@ -43,11 +87,11 @@ github: true
     and `-vvv` to be drowned in Tinkerer messages.
   - Fixed a few AST generation bugs.
 
-## 0.9.7a (2013-10-14)
+## 0.9.7a release (2013-10-14)
 
   - Fix Win32 build, some extern variables were in fact not.
 
-## 0.9.7 (2013-10-09)
+## 0.9.7 release (2013-10-09)
 
   - Author names have been removed from all source files, to encourage contributions
     rather than false ownership. The AUTHORS.md file still contains all contributor names.
@@ -87,62 +131,63 @@ github: true
     avoiding undesired side effects.
   - Avoid entering an infinite loop when trying to be helpful about compiler errors.
 
-## 0.9.6 (2013-02-20)
+## 0.9.6 release (2013-02-20)
 
   - Cover templates are in! Planning for cleaner arrays in 0.9.7 - in the meantime,
-    fun example here: <https://gist.github.com/fasterthanlime/90f42e737b713fa370e0> (@fasterthanlime)
+    fun example here: https://gist.github.com/nddrylliog/4967552 (@nddrylliog)
   - Version blocks in .use files - not entirely friendly to the make driver yet,
-    but SequenceDriver and AndroidDriver handle those beautifully. (@fasterthanlime)
-    Full documentation about use files here: <http://docs.ooc-lang.org/>
-  - operator@ variant (same as func@ but for operator overloads) - @fasterthanlime
+    but SequenceDriver and AndroidDriver handle those beautifully. (@nddrylliog)
+    Full documentation about use files here: http://docs.ooc-lang.org/
+  - operator@ variant (same as func@ but for operator overloads) - @nddrylliog
   - Operator overloads declaration within types, which fix some import issues.
-    See #583 for details. (@fasterthanlime)
+    See #583 for details: https://github.com/nddrylliog/rock/issues/583 (@nddrylliog)
   - Stricter warnings for field redefinition in classes (@shamanas)
   - Nested closures are more reliable (@shamanas)
   - Instead of going through an intermediate archive, rock now computes the
-    dependency graph of your project to pass linker arguments in the right order (@fasterthanlime)
-  - SequenceDriver was omitting -g, which made debugging significantly harder (@fasterthanlime)
+    dependency graph of your project to pass linker arguments in the right order (@nddrylliog)
+  - SequenceDriver was omitting -g, which made debugging significantly harder (@nddrylliog)
   - Invalid uses of break and continue inside of loops are now rock errors (@shamanas)
   - For the rest, this is mostly a bugfix and internal clean-ups release -
-    bugs related to generics, closures, type inference in match (@shamanas & @fasterthanlime)
-  - The --sourcepath has been deprecated, everything goes through .use files now (@fasterthanlime)
-  - The make driver produces a 'clean' target to remove all binary objects now. (@fasterthanlime)
+    bugs related to generics, closures, type inference in match (@shamanas & @nddrylliog)
+  - The --sourcepath has been deprecated, everything goes through .use files now (@nddrylliog)
+  - The make driver produces a 'clean' target to remove all binary objects now. (@nddrylliog)
 
-## 0.9.5 (2013-02-12)
+## 0.9.5 release (2013-02-12)
 
   - Fixed a long-standing issue with varargs usage in ternary expressions
     (#311) by @shamanas
   - Processes launched in Unix systems now check for segfault (@shamanas)
   - nagaqueen (and thus rock) are now able to parse .ooc files from memory, not
     only from files. This allows nice things such as
-    <https://github.com/fasterthanlime/scissors> (@fasterthanlime)
+    https://github.com/nddrylliog/scissors (@nddrylliog)
   - Add '#pragma once' in generated headers, this makes compilation faster for
     some (gcc/clang), and header guards are still here as a fallback for old
     compilers (@shamanas)
-  - 'CustomPkg' support in .use files, see #492 - used in scissors for
+  - 'CustomPkg' support in .use files, see
+    https://github.com/nddrylliog/rock/issues/492 - used in scissors for
     llvm-config, but also in ooc-sdl2 for sdl2-config, for example
-    (@fasterthanlime)
+    (@nddrylliog)
   - 'Linker' support in .use files, great when using ooc-llvm because it
-    requires the final linking step to be done with g++ (@fasterthanlime)
+    requires the final linking step to be done with g++ (@nddrylliog)
   - Fixed a strange varargs but that was basically an off-by-one error  
-  - Make relative 'IncludePaths'/'LibsPaths' work in .use files (@fasterthanlime)
+  - Make relative 'IncludePaths'/'LibsPaths' work in .use files (@nddrylliog)
   - Display command line in case rock fails to execute a process on Win32
   - 'Frameworks' support for .use files, useful when building on OSX
-    (@fasterthanlime)
+    (@nddrylliog)
   - String + Number now does concatenation again (@shamanas)
-  - Fix GetTimeFormat usage on Win32, had a null byte before (@fasterthanlime)
+  - Fix GetTimeFormat usage on Win32, had a null byte before (@nddrylliog)
   - Sequence driver now uses multiple threads - 1.5x your number of processors
     by default. You can control the number of parallel jobs with '-j'
-    (@fasterthanlime)
+    (@nddrylliog)
   - Cleanup os/Terminal implementation, make it cross-platform again in a
-    cleaner way (@fasterthanlime)
+    cleaner way (@nddrylliog)
   - Enum decls were buggy, sometimes they couldn't be used because of undefind
     symbols, as caused by invalid generated C code - that's now fixed.
-    (@fasterthanlime)
+    (@nddrylliog)
   - Lots of cachelib fixes, recompilation now almost always works (#541 is
     still an issue), SequenceDriver is a lot cleaner, CombineDriver is gone,
     and cachelib is now the one true way - and never hangs anymore on Win32.
-    (@fasterthanlime)
+    (@nddrylliog)
   - rock releases have codenames again! This one is panda.
   - Add built-ins - symbols in ooc code that will get replaced while resolving.
     At the time of this release, those are: __BUILD_DATETIME__,
@@ -152,42 +197,42 @@ github: true
     ones (@shamanas)
   - Varargs were broken on ARM - that's now all fixed, and ooc code runs
     beautifully on both the Raspberry PI (rock bootstraps) and ARM Android
-    phones (game projects) (@fasterthanlime, @duckinator, @geckojsc)
+    phones (game projects) (@nddrylliog, @duckinator, @geckojsc)
   - The sdk is now a proper library with a .use file and default imports -
     instead of having ugly hardcoded hacks in the compiler instead. That makes
-    swapping the default sdk with your own real easy (@fasterthanlime)
+    swapping the default sdk with your own real easy (@nddrylliog)
   - $OOC_LIBS now accepts multiple paths, separated by the File separator (: on
     *nix, ; on Windows) - that's useful when swapping SDKs, or when having to
     use different usefiles depending on the platform, to work around #561
-    (@fasterthanlime)
+    (@nddrylliog)
   - Make process launching more solid on all platforms, introducing
-    os/ShellUtils that's been imported from rock's codebase. (@fasterthanlime)
+    os/ShellUtils that's been imported from rock's codebase. (@nddrylliog)
   - Process launching on Win32 now supports cwd (current working directory)
-    (@fasterthanlime)
+    (@nddrylliog)
   - The explain backend has been removed for a slimmer codebase. It may find a
-    second life as a separate tool (@fasterthanlime)
+    second life as a separate tool (@nddrylliog)
   - dot output (to graph dependencies between modules) has been removed, for a
     slimmer codebase. I'm afraid it's dead for good, but it was fun while it
-    lasted! (@fasterthanlime)
+    lasted! (@nddrylliog)
   - Fix an annoying bug with properties: when we had a property access on the
     right hand side of an assignment, it assumed it was a real member. Now
-    handled correctly (@fasterthanlime)
+    handled correctly (@nddrylliog)
   - 'Additionals' support in .use files - to use .c code bases directly in your
     .ooc bindings, example: nagaqueen-generated grammar in rock.use, and
-    stb_image.c in <https://github.com/fasterthanlime/ooc-stb-image>
+    stb_image.c in https://github.com/nddrylliog/ooc-stbi
   - Add 'seek' to the Reader interface - it's actually handy to subclass this
     for alternative I/O, see this example with SDL_rwops:
-        <https://github.com/fasterthanlime/dye/blob/gles/source/dye/gritty/io.ooc>
-        (@fasterthanlime)
+        https://github.com/nddrylliog/dye/blob/gles/source/dye/gritty/io.ooc
+        (@nddrylliog)
   - Android driver added, generate files in your jni/ directory (specify with
     -outpath), and generate Android.mk files to be used with ndk-build.
-    (@fasterthanlime)
+    (@nddrylliog)
 
-## 0.9.4 (2012-11-21)
+## 0.9.4 release (2012-11-21)
 
   - BSD support added by @duckinator
   - Fixed compilation on ArchLinux x64
-  - Fixed and ported parts of the SDK for win32 support, thanks to @fasterthanlime
+  - Fixed and ported parts of the SDK for win32 support, thanks to @nddrylliog
   - Added '=>' operator (not overloaded by the SDK) by @shamanas
   - Added File getReducedPath
   - Added namespace type support
@@ -197,12 +242,12 @@ github: true
   - Default main() generated by rock now returns 0 as expected
   - Added support for Travis-CI builds
   - Various scoring improvements (for function types, operators, ...)
-  - clone, merge and merge! added to HashMap by @fasterthanlime
+  - clone, merge and merge! added to HashMap by @nddrylliog
   - Nested array support added by @shamanas
   - Better errors for dot-args and ass-args outside of non-static methods
-  - Lots of bugfixes by @shamanas, @fasterthanlime, @duckinator, @showstopper, @fredreichbier
+  - Lots of bugfixes by @shamanas, @nddrylliog, @duckinator, @showstopper, @fredreichbier
 
-## 0.9.3 (2011-12-13)
+## 0.9.3 release (2011-12-13)
 
   - OSX support is back! Thanks @nilium for upgrading us to the latest
     libatomic_ops (yup, it was that simple).
@@ -222,10 +267,10 @@ github: true
     has migrated to 0.9.3, we'll include that in 0.9.4
   - Again, lots of bugfixes and cleanups, lookup the commits
 
-## 0.9.2 (2011-09-05)
+## 0.9.2 release (2011-09-05)
 
   - Lots of bugfixes, refactorings (see GitHub milestone), thanks to
-    @shamanas, @duckinator, @fredreichbier, @showstopper, @tsion, @rofl0r, @fasterthanlime
+    @shamanas, @duckinator, @fredreichbier, @showstopper, @tsion, @rofl0r, @nddrylliog
   - New Socket API by @duckinator (aka Nicholas Markwell)
   - FreeBSD support by @nikobordx
   - Better error messages through nagaqueen fixes
@@ -235,33 +280,33 @@ github: true
   - New command-line options: libfolder, staticlib, dynamiclib
   - yajit removal, it wasn't being used anywhere in rock
   - New Time methods
-  - Somehow the SDK now includes an <HTTPRequest> and RestClient?
+  - Somehow the SDK now includes an HTTPRequest and RestClient?
     Courtesy of @pheuter aka Mark Fayngersh
   - Added loop(|| ...)
   - Variants of each(...) with index
   - main now acceps String* as parameter (@showstopper aka Yannic Ahrens)
-  - version blocks now support else {} (@fasterthanlime aka Amos Wenger)
+  - version blocks now support else {} (@nddrylliog aka Amos Wenger)
   - Probably the biggest change, which also explains why this release took
     a whopping 15 months - newstr, ie. String is now a class, and CStrnig
     is now the cover of char*. It's handled smoothly in many cases, thanks
     to implicit cases and related trickery but it's a scar rock will always bear.
 
-## 0.9.1 (2010-06-02)
+## 0.9.1 release (2010-06-02)
 
   - 2010-05 reverse iterators / backIterator() added to collection classes
     by Noel Cower (nilium)
   - 2010-05 lib-caching was added to rock, and partial recompilation is
     much smarter with the .libs/ directory and .cacheinfo files.
-    Can be disabled with -nolibcache. Added by Amos Wenger (@fasterthanlime)
+    Can be disabled with -nolibcache. Added by Amos Wenger (nddrylliog)
   - 2010-05 ACS (awesome closure syntax) is in! Our closures capture syntax
     and even generate trampoline functions to translate generic types
     into specific types. Thanks Yannic Ahrens (showstopper) !
   - 2010-05 oos now compiles under rock - we still have to figure out
     a good syntax for stack-allocation of C arrays.
   - 2010-04 Added support for ooc arrays, early implementation of this
-    proposal: <https://lists.launchpad.net/ooc-dev/msg00146.html>
+    proposal: https://lists.launchpad.net/ooc-dev/msg00146.html
 
-## 0.9.0 (2010-04-23)
+## 0.9.0 release (2010-04-23 - 600+ downloads)
 
   - 2010-04 : rock bootstraps under Gentoo, Ubuntu, Win32, OSX,
     the first release of the 0.9.x branch is out!
@@ -291,3 +336,4 @@ github: true
   - 2009-09 : The tokenizing code is all there, and it's working simply great.
     Now onto constructing AST nodes.
   - 2009-06 : Basic structure, it's gonna be some time till it can do anything useful
+
