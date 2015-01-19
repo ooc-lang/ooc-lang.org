@@ -105,7 +105,7 @@ in the class definition:
     c get() toString() println()
 
 Note that inference works here too - since we are passing
-a `T` to the constructor, the instanciation part could be
+a `T` to the constructor, the instantiation part could be
 simply rewritten as:
 
     #!ooc
