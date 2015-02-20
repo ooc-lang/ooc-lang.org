@@ -135,4 +135,9 @@ If ooc doesn't fulfill your needs, perhaps some of these do:
   <td>Native</td>
   <td>Abandoned?</td>
 </tr>
+<tr>
+  <td><a href="http://ec-lang.org/">eC</a></td>
+  <td>Native</td>
+  <td>Bundled with Ecere SDK</td>
+</tr>
 </table>
