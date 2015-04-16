@@ -69,6 +69,11 @@ The source is available [on GitHub][brackets-ooc]
 gtksourceview-based tools such as gedit, meld, etc. have
 ooc support out of the box.
 
+## Textadept
+
+Basic syntax highlighting is available for [Textadept][textadept] editor, see
+[textadept-ooc][textadept-ooc] for the lexer script and install instructions.
+
 ## pygments
 
 [pygments][pygments] has relatively good ooc support built-in. It is a python
@@ -85,3 +90,5 @@ static website generators such as [nanoc][nanoc].
 [atom]: https://atom.io/
 [brackets]: http://brackets.io/
 [brackets-ooc]: https://github.com/fasterthanlime/brackets-ooc
+[textadept]: http://foicica.com/textadept/index.html
+[textadept-ooc]: https://github.com/geckojsc/textadept-ooc
