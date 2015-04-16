@@ -33,6 +33,21 @@ ooc support for emacs is provided by [ooc-mode][ooc-mode]. It provides:
 
 ooc support for TextMate is provided by [ooc.tmbundle][ooc.tmbundle].
 
+## Sublime Text
+
+Sublime Text has great support for TextMate bundles with the exception of commands. You can use the TextMate [ooc.tmbundle](https://github.com/nilium/ooc.tmbundle) to power the syntax highlighting for ooc within Sublime Text 2 and 3.
+
+1. Find your Sublime Text [data directory](http://sublime-text-unofficial-documentation.readthedocs.org/en/latest/basic_concepts.html#the-data-directory).
+2. Go to it via command line (CMD prompt, Terminal, etc.)
+3. `git clone https://github.com/nilium/ooc.tmbundle.git`
+4. restart Sublime Text
+5. Associate the _ooc_ language with `.ooc` and `.use` files via the language selector in the bottom right of the window.
+
+-or-
+
+1. You can select something like Objective-C++ (built in) for _very basic_ syntax highlighting.
+2. Associate the _ooc_ language with `.ooc` and `.use` files via the language selector in the bottom right of the window.
+
 ## Atom
 
 The [Atom editor][atom] can use converted TextMate bundles.
