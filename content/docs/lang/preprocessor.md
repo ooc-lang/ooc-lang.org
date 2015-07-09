@@ -244,3 +244,47 @@ Itself equivalent to:
     a add(2)
     a add(3)
 
+## Slurping
+
+The compiler can read a text file at compile time, and insert it
+as a string literal in the code.
+
+    #!ooc
+    // assuming 'secret-assets' is a directory we don't ship
+    secrets := slurp("../secret-assets/secrets.txt")
+
+    secrets split("\n") each(|secret|
+      secret println()
+    )
+
+`slurp` only takes a single argument, and it *must* be a string
+literal (so you can't compute paths, as that would requiring interpreting
+ooc code at compile time, effectively requiring macros).
+
+It is not guaranteed to work with non-text files as it is transformed
+into an (escaped) string literal.
+
+The path passed to `slurp` should be relative to the `SourcePath` of the
+.use file to which the source file using `slurp` corresponds. It is
+*not* relative to the source file itself.
+
+Example directory structure for the example above:
+
+    .
+    ├── secret-assets
+    │   ├── secrets.txt
+    ├── source
+    │   └── foobar
+    │       └── package
+    │           └── something.ooc
+    └── foobar.use
+
+In this example, foobar.use contains `SourcePath: source`, as is usual
+with ooc libraries.
+
+`slurp` is used for example in dye, to [ship shader files in the executable][dye].
+Note that dye uses that as a fallback, only if it fails to read shader files
+from disk, which allows customization without recompiling.
+
+[dye]: https://github.com/fasterthanlime/dye/blob/master/source/dye/shader.ooc
+
