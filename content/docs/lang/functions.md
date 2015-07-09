@@ -206,6 +206,22 @@ it as a reference type:
 
 Saves typing, saves error, clearer code. Can still access the address via `argument&`.
 
+## Default parameters
+
+Default values for parameters can be specified using `:=`
+
+    #!ooc
+    greet: func (name := "John Doe") {
+      "Hello, #{name}!" println()
+    }
+
+    greet() // prints: "Hello, John Doe!"
+    greet("Rita") // prints: "Hello, Rita!"
+
+A function can have any number of default parameters, but they should
+all be at the end of the parameter list, never interleaved with non-default
+parameters.
+
 ## Closures
 
 A very concise way to pass a function as an argument. `each` is a typical
