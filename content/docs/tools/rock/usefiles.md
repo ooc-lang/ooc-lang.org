@@ -124,8 +124,9 @@ A list of all currently supported fields in usefiles follows.
  * `Requires` can be used to specify requirements (denoted by usefile
    names), for example for sam
  * `SourcePath` can be used to add a path to the source path
- * `Imports` contains a comma-separated list of modules that should be
-   implicitly imported when `use yourusefile` is used.
+ * `Imports` contains list of modules that should be implicitly imported when
+   `use yourusefile` is used. Grouping syntax (e.g. `folder/[a, b, c]`) is
+   supported, just as regular ooc imports.
  * `Origin` is ignored by rock, but it traditionally specifies the
    git repository url of that package
  * `Main` is the name of the entrypoint file
