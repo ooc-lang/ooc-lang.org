@@ -125,24 +125,20 @@ Multiplication increments are valid as well:
 
 And multiplication increments are actually quite handy for things like bitsets.
 
-## Extern enums
+## Aliasing
 
-Enums can be extern, in which case every element will be a bare symbol, which should
-be defined externally, in C code for example:
-
-    #!ooc
-    ShutdownParam: extern enum {
-      SHUT_RD    // generate C name SHUT_RD
-      SHUT_WR    // generate C name SHUT_WR
-      SHUT_RDWR  // generate C name SHUT_RDWR
-    }
-
-Or, each element can be aliased individually:
+When writing bindings for a C api that uses various integer constants
+as enums, one can map them to ooc this way:
 
     #!ooc
-    ShutdownParam: extern enum {
-      extern(SHUT_RD) read
-      extern(SHUT_WR) write
-      extern(SHUT_RDWR) readWrite
+    ShutdownParam: enum {
+      read:      extern(SHUT_RD)
+      write:     extern(SHUT_WR)
+      readWrite: extern(SHUT_RDWR)
     }
+
+Then pass them as parameters using `ShutdownParam read` instead of C's
+short-form. Using the enum's name in function signatures also allows additional
+type checking (that C compilers don't do, since for them, enum values are just
+ints).
 
