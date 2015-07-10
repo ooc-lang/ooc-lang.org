@@ -35,7 +35,7 @@ Let's assume that you cloned the repository into a subdirectory of your ooc libr
 
 And here are the contents of `zeromq.use` (shortened for brevity):
 
-    #!ooc
+    #!yaml
     Name: zeromq
     Description: The 0MQ lightweight messaging kernel
     Version: 2010-06-16
@@ -74,7 +74,7 @@ and hack away.
 Another simpler example is the [sam](https://github.com/fasterthanlime/sam) usefile. sam is
 different because it compiles to an executable file:
 
-    #!ooc
+    #!yaml
     Name: sam
     Description: Sam keeps your ooc repos up to date
     SourcePath: source
