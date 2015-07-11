@@ -78,6 +78,12 @@ that location. For example:
 You may run into strange errors when trying to compile ooc programs if you
 forget this step!
 
+To ask Homebrew where it installed a piece of software, simply run `brew info
+name`, eg.:
+
+    #!bash
+    brew info rock
+
 ## Installing sam
 
 [sam][sam] is a very useful command-line tool that will allow you to:
