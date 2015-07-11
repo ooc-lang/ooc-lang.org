@@ -61,7 +61,7 @@ Catching exceptions is done through the `try` / `catch` syntax:
       openFile("dev/does/not/exist")
     } catch (e: Exception) {
       // something wrong happened
-      "Error: %s" printfln(e message)
+      "Error: #{e message}" println()
     }
 
 ### Exception sub-classes

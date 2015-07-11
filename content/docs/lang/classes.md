@@ -35,11 +35,11 @@ Members are variables tied to an instance:
       init: func (=name)
     }
 
-    d1 := Dog new("Pluty")
-    d2 := Dog new("Snoopo")
+    d1 := Dog new("Rita")
+    d2 := Dog new("Igloo")
 
-    "d1's name is = %s" printfln(d1 name)
-    "d2's name is = %s" printfln(d2 name)
+    "d1's name is = #{d1 name}" println()
+    "d2's name is = #{d2 name}" println()
 
 ### Built-in members
 
@@ -72,7 +72,7 @@ Static members belong to a class, rather than to an instance.
     for (i in 0..10) {
       Node new()
     }
-    "Number of nodes: %d" printfln(Node count)
+    "Number of nodes: #{Node count}" println()
 
 In the code above, `count` is "shared" among all instances of node - hence,
 incrementing it in the constructor will be "remembered" the next time a node

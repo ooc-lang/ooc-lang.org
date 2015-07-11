@@ -67,7 +67,7 @@ If we do want command-line arguments, we can do it the C way:
     main: func (argv: Int, argc: CString*) {
       for (i in 0..argv) {
         arg = argc[i]
-        "Got argument: %s" printfln(arg toString())
+        "Got argument: #{arg toString()}" println()
       }
     }
 
@@ -124,15 +124,15 @@ Use `args iterator()` to be able to iterate through the arguments:
 
     #!ooc
     printAll: func (things: ...) {
-      "Printing %d things" printfln(things count)
+      "Printing #{things count} things" println()
       iter := things iterator()
 
       while (iter hasNext?()) {
         T := iter getNextType()
-        "The next argument is a %s" printfln(T name)
+        "The next argument is a #{T name}" println()
 
         match T {
-          case Int => "%d" printfln(iter next(Int))
+          case Int   => "%d"   printfln(iter next(Int))
           case Float => "%.2f" printfln(iter next(Float))
           case => "Unsupported type"
         }
@@ -145,7 +145,7 @@ More simply, `each` can be used on a `VarArgs`:
     printAll: func (things: ...) {
       things each(|thing|
         match thing {
-          case i: Int => "%d" printfln(i)
+          case i: Int   => "%d"   printfln(i)
           case f: Float => "%.2f" printfln(f)
           case => "<unknown>"
         }
@@ -254,3 +254,4 @@ Also works with several parameters:
     )
 
 Argument types are inferred, hence, the code is very short.
+

@@ -100,14 +100,14 @@ values like ranges:
 
     #!ooc
     for (i in 1..10) {
-        "Counting to %d" printfln(i)
+        "Counting to #{i}" println()
     }
 
 Or more complex data structures:
 
     #!ooc
     for (element in list) {
-        "Element = %s" printfln(element toString())
+        "Element = #{element}" println()
     }
 
 For an object to be iterable, it has to implement the
@@ -116,8 +116,8 @@ For an object to be iterable, it has to implement the
 A variant of foreach allows one to get the index of the current element:
 
     #!ooc
-    for ((index, element) in list) {
-        "list[%d] = %s" printfln(index, element toString())
+    for ((i, el) in list) {
+        "list[#{i}] = #{el}" println()
     }
 
 

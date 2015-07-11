@@ -25,7 +25,7 @@ C arrays are really just pointers:
 
     printInts: func (arr: Int*, length: Int) {
       for (i in 0..length) {
-        "%d" printfln(arr[i])
+        "#{arr[i]}" println()
       }
     }
 
@@ -44,7 +44,7 @@ is desirable, this syntax will work:
 
     printInts: func (arr: Int*, length: Int) {
       for (i in 0..length) {
-        "%d" printfln(arr[i])
+        "#{arr[i]}" println()
       }
     }
 
@@ -66,7 +66,7 @@ The syntax is as follows:
 
     printInts: func (arr: Int[]) {
       for (i in 0..arr length) {
-        "%d" printfln(arr[i])
+        "#{arr[i]}" println()
       }
     }
 
@@ -95,7 +95,7 @@ They can be used with array-like operators:
 
     printInts: func (list: ArrayList<Int>) {
       for (i in 0..list size) {
-        "%d" printfln(list[i])
+        "#{list[i]}" println()
       }
     }
 
@@ -107,7 +107,7 @@ foreach to iterate over the list's elements:
     #!ooc
     printInts: func (list: ArrayList<Int>) {
       for (i in list) {
-        "%d" printfln(i)
+        "#{i}" println()
       }
     }
 
@@ -144,7 +144,7 @@ Example usage of [generics][generics]:
     printList(ArrayList<String> new())
 
     printList: func <T> (list: ArrayList<T>) {
-      "Got a list of %s" printfln(list T name)
+      "Got a list of #{list T name}" println()
     }
 
 In this case, `list T` is just a [class][class].
@@ -161,7 +161,7 @@ Simple array literals will give ooc arrays:
 
     printInts: func (arr: Int[]) {
       for (i in 0..arr length) {
-        "%d" printfln(arr[i])
+        "#{arr[i]}" println()
       }
     }
 
@@ -174,7 +174,7 @@ C array literals:
 
     printInts: func (arr: Int*, length: Int) {
       for (i in 0..length) {
-        "%d" printfln(arr[i])
+        "#{arr[i]}" println()
       }
     }
 
@@ -188,7 +188,7 @@ In the same fashion, ArrayList literals exist:
 
     printInts: func (list: ArrayList<Int>) {
       for (elem in list) {
-        "%d" printfln(elem)
+        "#{elem}" println()
       }
     }
 
