@@ -81,7 +81,7 @@ down a few more lines, replacing the contents of `source/watchcorgi.ooc` with th
     import os/Process
     
     exitCode := Process new(["curl", "-I", "http://example.org/"]) execute()
-    "Sir Curl exited with: %d" printfln(exitCode)
+    "Sir Curl exited with: #{exitCode}" println()
 
 And sure enough, after a quick recompilation, she saw the expected result: `Sir Curl
 exited with: 0`. Curious, she disconnected from the internet, and tried launching
