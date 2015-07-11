@@ -68,6 +68,16 @@ Edit your `~/.bashrc` or `~/.zshrc` file to add the line:
 And then close and re-open your terminal - or simply `source ~/.bashrc`
 or similar.
 
+If you've installed `rock` in an unusual location - for example, Homebrew
+installs applications under `/usr/local` - then `OOC_LIBS` must also include
+that location. For example:
+
+    #!bash
+    export OOC_LIBS=/usr/local/Cellar/rock/0.9.10:"$HOME/Dev"
+
+You may run into strange errors when trying to compile ooc programs if you
+forget this step!
+
 ## Installing sam
 
 [sam][sam] is a very useful command-line tool that will allow you to:
