@@ -272,7 +272,7 @@ Example directory structure for the example above:
 
     .
     ├── secret-assets
-    │   ├── secrets.txt
+    │   └── secrets.txt
     ├── source
     │   └── foobar
     │       └── package

@@ -11,8 +11,9 @@ There are some tools you should know about when you start looking into ooc.
  1. [rock](/docs/tools/rock/) is the ooc compiler. In most cases,
    you will use it to generate C sources and executables from your ooc sources.
 
- 2. [sam](/docs/tools/sam/) helps you to keep all your libraries together and up-to-date.
-   It's also able to resolve dependencies without any hassle.
+ 2. [sam](/docs/tools/sam/) helps you grab ooc libraries from git repos and
+    keep them up-to-date. It also allows code checking, and can run simple
+    test suites.
 
  3. [editors](/docs/tools/editors/) - describes how to get syntax highlighting,
    program checking, indentation in vim, emacs, TextMate?
