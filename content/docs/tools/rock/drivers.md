@@ -82,6 +82,22 @@ One can use `make clean` to clean the produced objects and binaries. Modifying
 sources and partial recompilation is possible. Make accepts parallelism options
 similar to rock, e.g. with 8 cores, one might want to use `make -j7`.
 
+## CMake driver
+
+The CMake driver is similar to the make driver but generates a `CMakeLists.txt`
+file instead. The process looks like:
+
+    #!bash
+    # In project directory
+    rock --driver=cmake
+    cd build/
+    cmake .
+    make
+
+Note that CMake is itself a build file generator. In the example above we're
+using the default `Makefile` output of CMake, but it could be used to generate
+Visual Studio project files, XCode project files, etc.
+
 ## Android driver
 
 In spirit, the Android driver (invoked with `--driver=android`) is similar to
