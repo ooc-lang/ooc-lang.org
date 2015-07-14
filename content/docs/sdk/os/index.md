@@ -26,8 +26,6 @@ The os packages contains various modules pertaining to Operating System function
 
  4. [mmap](/docs/sdk/os/mmap/), which exposes memory mapping capabilities
 
- 5. [Channel](/docs/sdk/os/channel/), which implements channels
-
 ### System
 
  1. [System](/docs/sdk/os/system/), to get information such as the number of processors,
