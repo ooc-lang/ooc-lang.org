@@ -139,7 +139,7 @@ expression pattern, passing some options as a bitmask if you want to:
     #!ooc
     import text/Regexp
 
-    pattern := Regexp compile("on (?P<year>[0-9]{4})-?P<month>[0-9]{1,2})-(?P<day>[0-9]{1,2})", RegexOptions CASELESS)
+    pattern := Regexp compile("on (?P<year>[0-9]{4})-?P<month>[0-9]{1,2})-(?P<day>[0-9]{1,2})", RegexpOption CASELESS)
     pattern matches("foo") // this will return null, since the pattern could not be matched
 
     someDate := pattern matches("On 2013-08-07")
