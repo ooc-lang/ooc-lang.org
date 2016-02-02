@@ -50,7 +50,7 @@ Generics bugfixes:
   - Accessing a generic member used to require a cast, but not any more (#889, #425)
   - Properties of generic types used to cause a mysterious `gc_malloc` unresolved
     error, well, not anymore. (#840)
-  - When matching against a parameterized type (e.g. ArrayList<T>), rock used
+  - When matching against a parameterized type (e.g. ArrayList\<T\>), rock used
     to complain about the lack of typeArgs. It's now valid to have an
     unqualified parameterized type in a match (#802)
   - rock doesn't segfault on parameterized function call (which is invalid ooc) (#811, #833)
