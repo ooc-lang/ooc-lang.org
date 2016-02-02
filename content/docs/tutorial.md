@@ -475,7 +475,7 @@ She decided to make it easy for other people who might want to use
 the process itself was trivial. She just had to send a pull request to the
 [sam repository][sam-repo] that added a formula for her new pet project.
 
-[sam-repo]: https://github.com/fasterthanlime/sam
+[sam-repo]: https://github.com/ooc-lang/sam
 
 So, after forking sam on GitHub, changing the origin of her sam repository,
 she opened a new file in `$OOC_LIBS/sam/library/watchcorgi.yml`, and wrote:

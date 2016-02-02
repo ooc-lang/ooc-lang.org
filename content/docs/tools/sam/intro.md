@@ -21,7 +21,7 @@ apart from rock, you can just go ahead and compile it [from the usefile](/docs/t
 
     #!bash
     cd $OOC_LIBS
-    git clone https://github.com/fasterthanlime/sam.git
+    git clone https://github.com/ooc-lang/sam.git
     cd sam/
     rock -v sam.use
 

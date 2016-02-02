@@ -18,7 +18,7 @@ index: true
 
 [editors]: /docs/tools/editors/
 [rock]: /docs/tools/rock/
-[sam]: https://github.com/fasterthanlime/sam
+[sam]: https://github.com/ooc-lang/sam
 
 These docs contain:
 

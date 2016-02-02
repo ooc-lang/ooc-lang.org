@@ -7,7 +7,7 @@ has_toc: true
 
 If you find a bug in rock, you should [report it][gh-issues]! But before you do, please make sure you have the latest version installed, and see if you can still reproduce the bug there. It is also helpful to make sure the issue hasn't already been reported - a quick search should take care of that.
 
-[gh-issues]: https://github.com/fasterthanlime/rock/issues/new
+[gh-issues]: https://github.com/ooc-lang/rock/issues/new
 
 ## Submitting feature requests
 
@@ -15,13 +15,13 @@ If you have a particular itch to scratch and you think it would make a nice addi
 
 You can read a list of [pending feature requests][rock-features] on rock's GitHub issue tracker.
 
-[rock-features]: https://github.com/fasterthanlime/rock/issues?labels=Feature&state=open
+[rock-features]: https://github.com/ooc-lang/rock/issues?labels=Feature&state=open
 
 ## Getting the source code
 
 The source code for rock is available in the [rock repository on github][rock-repo].
 
-[rock-repo]: https://github.com/fasterthanlime/rock/
+[rock-repo]: https://github.com/ooc-lang/rock/
 
 Here's how we handle branches:
 

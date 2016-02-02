@@ -71,7 +71,7 @@ As a result, you can now just import the ooc-zeromq ooc file like this:
 
 and hack away.
 
-Another simpler example is the [sam](https://github.com/fasterthanlime/sam) usefile. sam is
+Another simpler example is the [sam](https://github.com/ooc-lang/sam) usefile. sam is
 different because it compiles to an executable file:
 
     #!yaml

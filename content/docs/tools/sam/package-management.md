@@ -11,13 +11,13 @@ package manager.
 
 In general, sam consists of a simple executable and a collection of package
 files: It keeps a
-[grimoire](https://github.com/fasterthanlime/sam/tree/master/library) of
+[grimoire](https://github.com/ooc-lang/sam/tree/master/library) of
 package metadata, so-called formulas.  In a way, this is ooc's central package
 repository, similar to Python's PyPI, but much simpler. Every package is
 represented by a single YAML file.  For now, the only supported (and required)
 option is `Origin` containing the URL of the corresponding git repository.
 
-For example, the [SDL2 formula](https://github.com/fasterthanlime/sam/blob/master/library/sdl2.yml)
+For example, the [SDL2 formula](https://github.com/ooc-lang/sam/blob/master/library/sdl2.yml)
 just says:
 
     Origin: https://github.com/geckojsc/ooc-sdl2.git
@@ -87,8 +87,8 @@ Therefore, it is important to include as many packages as possible.
 
 So, if you're developing some open source ooc project, please go ahead, clone
 the [sam repository][sam], add a formula and file a
-[pull request](https://github.com/fasterthanlime/sam/pulls). Everybody wins!
+[pull request](https://github.com/ooc-lang/sam/pulls). Everybody wins!
 
-[sam]: https://github.com/fasterthanlime/sam
-[grimoire]: https://github.com/fasterthanlime/sam/tree/master/library
+[sam]: https://github.com/ooc-lang/sam
+[grimoire]: https://github.com/ooc-lang/sam/tree/master/library
 

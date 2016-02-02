@@ -5,7 +5,7 @@ class LinkGitHubIssues < Nanoc::Filter
   def run(content, params={})
     content.gsub(/#(\d+)/) do |m|
       num = m[1..-1]
-      %[<a href="http://github.com/fasterthanlime/rock/issues/#{num}">##{num}</a>]
+      %[<a href="http://github.com/ooc-lang/rock/issues/#{num}">##{num}</a>]
     end
   end
 

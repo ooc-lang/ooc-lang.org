@@ -86,7 +86,7 @@ static website generators such as [nanoc][nanoc].
 [ooc.tmbundle]: https://github.com/nilium/ooc.tmbundle
 [pygments]: http://pygments.org/ 
 [nanoc]: http://nanoc.ws/ 
-[sam]: https://github.com/fasterthanlime/sam
+[sam]: https://github.com/ooc-lang/sam
 [atom]: https://atom.io/
 [brackets]: http://brackets.io/
 [brackets-ooc]: https://github.com/fasterthanlime/brackets-ooc

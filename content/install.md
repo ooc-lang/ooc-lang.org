@@ -37,7 +37,7 @@ Then, follow the [git installation instructions](#installing-from-git).
 To install rock, simply clone the git repo and run make rescue:
 
     #!bash
-    git clone https://github.com/fasterthanlime/rock.git
+    git clone https://github.com/ooc-lang/rock.git
     cd rock
     make rescue
 
@@ -90,7 +90,7 @@ forget this step!
 It is simply a must-have. Don't wait up and do the following:
 
     #!bash
-    git clone https://github.com/fasterthanlime/sam.git $OOC_LIBS/sam
+    git clone https://github.com/ooc-lang/sam.git $OOC_LIBS/sam
     cd $OOC_LIBS/sam
     rock -v
 
