@@ -64,9 +64,9 @@ before anything else, to set up stuff).
 If we do want command-line arguments, we can do it the C way:
 
     #!ooc
-    main: func (argv: Int, argc: CString*) {
-      for (i in 0..argv) {
-        arg = argc[i]
+    main: func (argc: Int, argv: CString*) {
+      for (i in 0..argc) {
+        arg = argv[i]
         "Got argument: #{arg toString()}" println()
       }
     }
