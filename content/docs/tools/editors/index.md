@@ -35,7 +35,14 @@ ooc support for TextMate is provided by [ooc.tmbundle][ooc.tmbundle].
 
 ## Sublime Text
 
-Sublime Text has great support for TextMate bundles with the exception of commands. You can use the TextMate [ooc.tmbundle](https://github.com/nilium/ooc.tmbundle) to power the syntax highlighting for ooc within Sublime Text 2 and 3.
+1. You can select something like JavaScript or Objective-C++ (built in) for _very basic_ syntax highlighting.
+2. Associate the _ooc_ language with `.ooc` and `.use` files via the language selector in the bottom right of the window.
+
+**`-or-`**
+
+You can use the TextMate [ooc.tmbundle](https://github.com/nilium/ooc.tmbundle) to power the syntax highlighting for ooc within Sublime Text 2 and 3. Sublime Text has great support for TextMate bundles with the exception of commands.
+
+### Sublime Text 2
 
 1. Find your Sublime Text [data directory](http://sublime-text-unofficial-documentation.readthedocs.org/en/latest/basic_concepts.html#the-data-directory).
 2. Go to it via command line (CMD prompt, Terminal, etc.)
@@ -43,10 +50,14 @@ Sublime Text has great support for TextMate bundles with the exception of comman
 4. restart Sublime Text
 5. Associate the _ooc_ language with `.ooc` and `.use` files via the language selector in the bottom right of the window.
 
--or-
+### Sublime Text 3
 
-1. You can select something like Objective-C++ (built in) for _very basic_ syntax highlighting.
-2. Associate the _ooc_ language with `.ooc` and `.use` files via the language selector in the bottom right of the window.
+1. Find your Sublime Text [`data directory`](http://sublime-text-unofficial-documentation.readthedocs.org/en/latest/basic_concepts.html#the-data-directory).
+2. Go to it via command line (CMD prompt, Terminal, etc.)
+3. `cd Packages`
+4. `git clone https://github.com/nilium/ooc.tmbundle.git`
+5. restart Sublime Text
+6. Associate the _ooc_ language with `.ooc` and `.use` files via the language selector in the bottom right of the window.
 
 ## Atom
 
