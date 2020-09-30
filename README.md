@@ -1,4 +1,4 @@
-# ooc-lang.org
+# ooc(Object Oriented C)-lang.org
 
 This is the Markdown sources for the ooc language website, <https://ooc-lang.org>
 
