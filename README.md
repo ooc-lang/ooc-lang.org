@@ -1,8 +1,8 @@
-# ooc-lang.org
+# ooc-lang.org 
 
 This is the Markdown sources for the ooc language website, <https://ooc-lang.org>
 
-## Building
+## Building - 🚧 
 
 [nanoc][] is used to transform Markdown into HTML. It's a piece of ruby software.
 
@@ -22,7 +22,7 @@ bundle exec nanoc
 
 [nanoc]: http://nanoc.ws/
 
-## Deploying
+## Deploying - ⚡️
 
 nanoc produces output in the `output/` directory as per `nanoc.yaml`, we host
 the website on Github Pages for free hosting, which means you can deploy by
@@ -43,6 +43,6 @@ After building the site, every time you want to deploy:
 (Note: since the deploy repo is named `ooc-lang.github.io`, the `master` branch
 is used rather than the `gh-pages` branch.)
 
-## Links
+## Links - 🔗
 
   * The nanoc project: <http://nanoc.ws/>
