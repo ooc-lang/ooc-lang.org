@@ -1,4 +1,4 @@
-# Generate a glossary from YAML metadata
+
 
 class AddGlossary < Nanoc::Filter
 
@@ -28,7 +28,7 @@ class AddGlossary < Nanoc::Filter
       res << '</dl>'
 
       res
+       end
     end
-  end
 
-end
+    end
