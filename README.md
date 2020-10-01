@@ -6,7 +6,7 @@ This is the Markdown sources for the ooc language website, <https://ooc-lang.org
 
 [nanoc][] is used to transform Markdown into HTML. It's a piece of ruby software.
 
-To build the website, make sure you have Ruby 2.x+, run this once:
+To build the website, make sure that you have Ruby 2.x+, run this once:
 
 ```bash
 bundle install
