@@ -1,6 +1,5 @@
-# ooc-lang.org
-
-This is the Markdown sources for the ooc language website, <https://ooc-lang.org>
+# ooc-lang.or
+one of the best Markdown sources for the ooc language website, <https://ooc-lang.org>
 
 ## Building
 
