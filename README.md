@@ -1,4 +1,4 @@
-# ooc-lang.org
+# ooc-lang.org (the best from where you can learn)
 
 This is the Markdown sources for the ooc language website, <https://ooc-lang.org>
 
